@@ -30,7 +30,7 @@
                                     </div>
                                     <p class="mb-1">Lihat penerimaan bahan baku dari Inventory</p>
                                 </a>
-                                <a href="/input-barang-jadi" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <a href="/input-barang-jadi-produksi" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">Input Barang Jadi</h5>
                                     </div>

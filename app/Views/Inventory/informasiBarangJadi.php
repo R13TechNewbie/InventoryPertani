@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Input Barang Jadi</h4>
-                        <a href="/input-barang-jadi"><button type="button" class="btn mb-1 btn-primary mt-2" style="width: 100%;">Input Barang Jadi</button></a>
+                        <a href="/input-barang-jadi-inventory"><button type="button" class="btn mb-1 btn-primary mt-2" style="width: 100%;">Input Barang Jadi</button></a>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
@@ -32,19 +32,19 @@
                                         <th>1</th>
                                         <td>Beras Pertani 1 KG</td>
                                         <td>3</td>
-                                        <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                        <td><a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a></td>
                                     </tr>
                                     <tr>
                                         <th>2</th>
                                         <td>Beras Pertani 5 KG</td>
                                         <td>5</td>
-                                        <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                        <td><a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a></td>
                                     </tr>
                                     <tr>
                                         <th>3</th>
                                         <td>Bibit Tomat Pertani</td>
                                         <td>7</td>
-                                        <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                        <td><a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a></td>
                                     </tr>
                                 </tbody>
                             </table>

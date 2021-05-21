@@ -18,7 +18,7 @@
                         <h4 class="card-title">Menu Sales & Marketing</h4>
                         <div class="basic-list-group">
                             <div class="list-group">
-                                <a href="/informasi-barang-jadi" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <a href="/informasi-barang-jadi-sales-marketing" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">Informasi Stok Barang Jadi</h5>
                                     </div>

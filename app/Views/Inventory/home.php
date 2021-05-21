@@ -24,7 +24,7 @@
                                     </div>
                                     <p class="mb-1"></p>
                                 </a>
-                                <a href="/stok-barang-jadi" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <a href="/stok-barang-jadi-inventory" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">Stok Barang Jadi</h5>
                                     </div>

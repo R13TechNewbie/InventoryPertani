@@ -32,19 +32,19 @@
                                         <th>1</th>
                                         <td>Beras 1 KG</td>
                                         <td>3</td>
-                                        <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                        <th><a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a></th>
                                     </tr>
                                     <tr>
                                         <th>2</th>
                                         <td>Beras 5 KG</td>
                                         <td>5</td>
-                                        <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                        <th><a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a></th>
                                     </tr>
                                     <tr>
                                         <th>3</th>
                                         <td>Bibit Tomat</td>
                                         <td>7</td>
-                                        <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                        <th><a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a></th>
                                     </tr>
                                 </tbody>
                             </table>

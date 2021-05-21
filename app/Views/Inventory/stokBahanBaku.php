@@ -18,7 +18,7 @@
                         <h4 class="card-title">Menu Inventory</h4>
                         <div class="basic-list-group">
                             <div class="list-group">
-                                <a href="/informasi-barang-jadi" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <a href="/informasi-bahan-baku" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">Input Bahan Baku</h5>
                                     </div>

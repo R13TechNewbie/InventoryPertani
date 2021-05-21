@@ -39,36 +39,42 @@ $routes->get('/testdd', 'Home::testdd');
 
 $routes->group('', ['filter' => 'role:Inventory'], function ($routes) {
 	$routes->get('/inventory', 'Inventory::index');
-	$routes->get('/stok-barang-jadi', 'Inventory::stokBarangJadi');
+	$routes->get('/stok-barang-jadi-inventory', 'Inventory::stokBarangJadi');
 	$routes->get('/request-barang-jadi-keluar', 'Inventory::requestBarangJadiKeluar');
 	$routes->get('/input-barang-jadi-keluar', 'Inventory::inputBarangJadiKeluar');
 	$routes->get('/stok-bahan-baku', 'Inventory::stokBahanBaku');
 	$routes->get('/informasi-bahan-baku-keluar', 'Inventory::informasiBahanBakuKeluar');
 	$routes->get('/input-bahan-baku-keluar', 'Inventory::inputBahanBakuKeluar');
-	$routes->get('/informasi-barang-jadi', 'Inventory::informasiBarangJadi');
-	$routes->get('/input-barang-jadi', 'Inventory::inputBarangJadi');
+	$routes->get('/informasi-barang-jadi-inventory', 'Inventory::informasiBarangJadi');
+	$routes->get('/input-barang-jadi-inventory', 'Inventory::inputBarangJadi');
 	$routes->get('/request-pembelian-bahan-baku', 'Inventory::requestPembelianBahanBaku');
 	$routes->get('/input-request-pembelian-bahan-baku', 'Inventory::inputRequestPembelianBahanBaku');
-	$routes->get('/purchaseOrder', 'Inventory::purchaseOrder');
+	$routes->get('/purchase-order', 'Inventory::purchaseOrder');
 	$routes->get('/informasi-bahan-baku', 'Inventory::informasiBahanBaku');
 	$routes->get('/input-bahan-baku', 'Inventory::inputBahanBaku');
 	$routes->get('/cetak-laporan', 'Inventory::cetakLaporan');
 });
 
+
+
 $routes->group('', ['filter' => 'role:SalesMarketing'], function ($routes) {
 	$routes->get('/sales-marketing', 'SalesMarketing::index');
-	$routes->get('/stok-barang-jadi', 'SalesMarketing::stokBarangJadi');
-	$routes->get('/informasi-barang-jadi', 'SalesMarketing::informasiStokBarangJadi');
+	$routes->get('/stok-barang-jadi-sales-marketing', 'SalesMarketing::stokBarangJadi');
+	$routes->get('/informasi-barang-jadi-sales-marketing', 'SalesMarketing::informasiStokBarangJadi');
 	$routes->get('/request-barang-jadi', 'SalesMarketing::requestBarangJadi');
 	$routes->get('/stok-barang-jadi-keluar', 'SalesMarketing::stokBarangJadiKeluar');
 });
+
+
 
 $routes->group('', ['filter' => 'role:Produksi'], function ($routes) {
 	$routes->get('/produksi', 'Produksi::index');
 	$routes->get('/request-bahan-baku', 'Produksi::requestBahanBaku');
 	$routes->get('/penerimaan-bahan-baku', 'Produksi::penerimaanBahanBaku');
-	$routes->get('/input-barang-jadi', 'Produksi::inputBarangJadi');
+	$routes->get('/input-barang-jadi-produksi', 'Produksi::inputBarangJadi');
 });
+
+
 
 $routes->group('', ['filter' => 'role:Purchasing'], function ($routes) {
 	$routes->get('/purchasing', 'Purchasing::index');
@@ -76,10 +82,13 @@ $routes->group('', ['filter' => 'role:Purchasing'], function ($routes) {
 	$routes->get('/kirim-purchase-order', 'Purchasing::kirimPurchaseOrder');
 });
 
+
+
 $routes->group('', ['filter' => 'role:Supplier'], function ($routes) {
 	$routes->get('/supplier', 'Supplier::index');
 	$routes->get('/kirim-bahan-baku', 'Supplier::kirimBahanBaku');
 });
+
 
 /*
  * --------------------------------------------------------------------
