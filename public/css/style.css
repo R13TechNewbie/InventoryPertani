@@ -5453,7 +5453,7 @@ button.close {
 
 @media (min-width: 992px) {
   .modal-lg {
-    max-width: 800px;
+    max-width: 80%;
   }
 }
 
@@ -21410,3 +21410,21 @@ html[dir="rtl"]
 }
 
 /*# sourceMappingURL=style.css.map */
+
+/* Custom CSS by Rama */
+
+.fa-pencil {
+  color: white;
+}
+
+.fa-search {
+  color: white;
+}
+
+.fa-info-circle {
+  color: white;
+}
+
+.fa-info {
+  color: white;
+}

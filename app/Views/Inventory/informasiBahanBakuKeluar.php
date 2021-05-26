@@ -16,31 +16,88 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Informasi Bahan Baku Keluar</h4>
-                        <a href="/input-bahan-baku-keluar"><button type="button" class="btn mb-1 btn-primary mt-2" style="width: 100%;">Input Bahan Baku Keluar</button></a>
+                        <h5 class="card-title mt-2">Daftar Permintaan Bahan Baku Keluar</h5>
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered zero-configuration">
+                            <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>Id Pesanan</th>
+                                        <th>Tanggal Pesanan</th>
                                         <th>Nama Bahan Baku</th>
-                                        <th>Jumlah</th>
+                                        <th>Kuantitas</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th>1</th>
-                                        <td>Beras 1 KG</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Beras 5 KG</td>
+                                        <th>820012</th>
+                                        <td>10 Januari 2021</td>
+                                        <td>Gabah 5 KG</td>
                                         <td>5</td>
                                     </tr>
                                     <tr>
-                                        <th>3</th>
-                                        <td>Bibit Tomat</td>
-                                        <td>7</td>
+                                        <th>820013</th>
+                                        <td>10 Februari 2021</td>
+                                        <td>Gabah 5 KG</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <th>820014</th>
+                                        <td>10 Maret 2021</td>
+                                        <td>Gabah 5 KG</td>
+                                        <td>5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Daftar Proses Bahan Baku Keluar</h5>
+                        <a href="/input-bahan-baku-keluar"><button type="button" class="btn mb-1 btn-primary mt-2" style="width: 100%;">Input Bahan Baku Keluar</button></a>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered zero-configuration setting-defaults">
+                                <thead>
+                                    <tr>
+                                        <th>Id Pesanan</th>
+                                        <th>Tanggal Proses</th>
+                                        <th>Nama Bahan Baku</th>
+                                        <th>Kuantitas</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>820012</th>
+                                        <td>10 Januari 2021</td>
+                                        <td>Gabah 5 KG</td>
+                                        <td>5</td>
+                                        <td>terkirim</td>
+                                        <td>
+                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                            <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>820013</th>
+                                        <td>10 Februari 2021</td>
+                                        <td>Gabah 5 KG</td>
+                                        <td>5</td>
+                                        <td>terkirim</td>
+                                        <td>
+                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                            <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>820014</th>
+                                        <td>10 Maret 2021</td>
+                                        <td>Gabah 5 KG</td>
+                                        <td>5</td>
+                                        <td>diproses</td>
+                                        <td>
+                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                            <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

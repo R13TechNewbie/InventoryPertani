@@ -28,7 +28,7 @@
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">Request Barang Jadi Keluar</h5>
                                     </div>
-                                    <p class="mb-1">Request barang jadi keluar untuk ditambahkan ke dalam Stok Barang Jadi Keluar</p>
+                                    <p class="mb-1">Lihat dan proses daftar request barang jadi keluar untuk memproses permintaan barang jadi dari Sales & Marketing</p>
                                 </a>
                             </div>
                         </div>

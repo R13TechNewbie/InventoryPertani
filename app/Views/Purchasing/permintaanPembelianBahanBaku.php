@@ -17,38 +17,42 @@
                     <div class="card-body">
                         <h4 class="card-title">Permintaan Pembelian Bahan Baku</h4>
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered zero-configuration">
+                            <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
                                         <th>Nama Bahan Baku</th>
-                                        <th>Stok</th>
+                                        <th>Jumlah</th>
+                                        <th>status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th>1</th>
-                                        <td>Beras 1 KG</td>
+                                        <th>1410032</th>
+                                        <td>Gabah 5KG</td>
                                         <td>3</td>
+                                        <td>Ada</td>
                                         <td>
                                             <a href="#"><button class="btn btn-success"><i class="fa fa-check"></i></button></a>
                                             <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>2</th>
-                                        <td>Beras 5 KG</td>
+                                        <th>1410033</th>
+                                        <td>Bibit Tomat 500gr</td>
                                         <td>5</td>
+                                        <td>Ada</td>
                                         <td>
                                             <a href="#"><button class="btn btn-success"><i class="fa fa-check"></i></button></a>
                                             <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>3</th>
-                                        <td>Bibit Tomat</td>
+                                        <th>1410034</th>
+                                        <td>Bibit Semangka 500gr</td>
                                         <td>7</td>
+                                        <td>Ada</td>
                                         <td>
                                             <a href="#"><button class="btn btn-success"><i class="fa fa-check"></i></button></a>
                                             <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>

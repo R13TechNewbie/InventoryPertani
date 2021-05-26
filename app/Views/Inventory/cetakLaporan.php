@@ -33,7 +33,7 @@
                                 <div class="tab-pane fade show active" id="bahan-baku-masuk" role="tabpanel">
                                     <div class="p-t-15">
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-bordered zero-configuration">
+                                            <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
@@ -65,7 +65,7 @@
                                 <div class="tab-pane fade" id="bahan-jadi-masuk">
                                     <div class="p-t-15">
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-bordered zero-configuration">
+                                            <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
@@ -97,7 +97,7 @@
                                 <div class="tab-pane fade" id="bahan-baku-keluar">
                                     <div class="p-t-15">
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-bordered zero-configuration">
+                                            <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
@@ -129,7 +129,7 @@
                                 <div class="tab-pane fade" id="bahan-jadi-keluar">
                                     <div class="p-t-15">
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-bordered zero-configuration">
+                                            <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>

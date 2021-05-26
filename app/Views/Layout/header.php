@@ -248,13 +248,13 @@
                 <ul class="metismenu" id="menu">
                     <li class="nav-label">Menu</li>
                     <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                        <a class="has-arrow" href="/" aria-expanded="false">
                             <i class="icon-home menu-icon"></i><span class="nav-text">Home</span>
                         </a>
-                        <ul aria-expanded="false">
+                        <!-- <ul aria-expanded="false">
                             <li><a href="./index.html">Home 1</a></li>
-                            <!-- <li><a href="./index-2.html">Home 2</a></li> -->
-                        </ul>
+                            <li><a href="./index-2.html">Home 2</a></li>
+                        </ul> -->
                     </li>
                 </ul>
             </div>

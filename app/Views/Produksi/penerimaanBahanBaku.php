@@ -17,29 +17,45 @@
                     <div class="card-body">
                         <h4 class="card-title">Penerimaan Bahan Baku</h4>
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered zero-configuration">
+                            <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Nama Bahan Baku</th>
-                                        <th>Stok</th>
+                                        <th>Id Pesanan</th>
+                                        <th>Tanggal Pesanan</th>
+                                        <th>Produk Yang Dipesan</th>
+                                        <th>status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th>1</th>
-                                        <td>Beras 1 KG</td>
-                                        <td>3</td>
+                                        <th>820012</th>
+                                        <td>10 Januari 2021</td>
+                                        <td>
+                                            <p>- Gabah 5KG</p>
+                                            <p>- Benih Tomat 1KG</p>
+                                            <p>- Benih Semangka 1KG</p>
+                                        </td>
+                                        <td>terkirim</td>
                                     </tr>
                                     <tr>
-                                        <th>2</th>
-                                        <td>Beras 5 KG</td>
-                                        <td>5</td>
+                                        <th>820013</th>
+                                        <td>10 Februari 2021</td>
+                                        <td>
+                                            <p>- Gabah 5KG</p>
+                                            <p>- Benih Tomat 1KG</p>
+                                            <p>- Benih Semangka 1KG</p>
+                                        </td>
+                                        <td>terkirim</td>
                                     </tr>
                                     <tr>
-                                        <th>3</th>
-                                        <td>Bibit Tomat</td>
-                                        <td>7</td>
+                                        <th>820014</th>
+                                        <td>10 Maret 2021</td>
+                                        <td>
+                                            <p>- Gabah 5KG</p>
+                                            <p>- Benih Tomat 1KG</p>
+                                            <p>- Benih Semangka 1KG</p>
+                                        </td>
+                                        <td>diproses</td>
                                     </tr>
                                 </tbody>
                             </table>

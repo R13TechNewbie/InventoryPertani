@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Stok Barang Jadi Keluar</h4>
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered zero-configuration">
+                            <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
