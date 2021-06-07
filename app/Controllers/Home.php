@@ -2,10 +2,23 @@
 
 namespace App\Controllers;
 
+use App\Models\tesaja;
+use App\Models\BahanBakuModel;
+
 use Config\View;
 
 class Home extends BaseController
 {
+
+	protected $tesajaModel;
+	protected $bahanBakuModel;
+
+	public function __construct()
+	{
+		$this->tesajaModel = new tesaja();
+		$this->bahanBakuModel = new BahanBakuModel();
+	}
+
 	public function index()
 	{
 		$auth = service('authentication');
@@ -58,5 +71,50 @@ class Home extends BaseController
 		echo view('Layout/header', $data);
 		echo view('testdd');
 		echo view('Layout/footer');
+	}
+
+	public function tesInsert()
+	{
+		// dd($this->tesajaModel->findAll());
+		return view(('Layout/tesInsert'));
+	}
+
+	public function tesUpdate()
+	{
+		return view(('Layout/tesInsert'));
+	}
+
+	public function terimaInsert()
+	{
+		// dd($this->request->getVar());
+
+		$this->tesajaModel->save([
+			'nama' => $this->request->getVar('username')
+		]);
+	}
+
+	public function terimaUpdate()
+	{
+		dd($this->request->getVar());
+	}
+
+	public function tesInsertBahanBaku()
+	{
+		return view(('Layout/tesInsertBahanBaku'));
+	}
+	public function terimaInsertBahanBaku()
+	{
+		// dd($this->request->getVar());
+
+		$this->bahanBakuModel->save([
+			'id_bahan_baku' => $this->request->getVar('id_bahan_baku'),
+			'nama_bahan_baku' => $this->request->getVar('nama_bahan_baku'),
+			'jenis_bahan_baku' => $this->request->getVar('jenis_bahan_baku'),
+			'stock_bahan_baku' => $this->request->getVar('stock_bahan_baku'),
+		]);
+
+		echo ('data berhasil diupload');
+
+		dd($this->bahanBakuModel->findAll());
 	}
 }

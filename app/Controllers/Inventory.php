@@ -2,10 +2,24 @@
 
 namespace App\Controllers;
 
+use App\Database\Migrations\JenisBahanBaku;
 use Config\View;
+
+use App\Models\BahanBakuModel;
+use App\Models\JenisBahanBakuModel;
+use PhpParser\Node\Stmt\Echo_;
 
 class Inventory extends BaseController
 {
+    protected $bahanBakuModel;
+    protected $jenisBahanBakuModel;
+
+    public function __construct()
+    {
+        $this->bahanBakuModel = new BahanBakuModel();
+        $this->jenisBahanBakuModel = new JenisBahanBakuModel();
+    }
+
     public function index()
     {
         $data = [
@@ -152,23 +166,64 @@ class Inventory extends BaseController
     public function informasiBahanBaku()
     {
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Inventory',
+            'bahanBaku' => $this->bahanBakuModel->getBahanBaku()
         ];
 
+
         echo view('Layout/header', $data);
-        echo view('Inventory/informasiBahanBaku');
+        echo view('Inventory/informasiBahanBaku', $data);
         echo view('Layout/footer');
     }
 
-    public function inputBahanBaku()
+    public function inputBahanBaku($idBahanBaku = false)
     {
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Inventory',
+            'idBahanBaku' => $idBahanBaku,
+            'bahanBaku' => $this->bahanBakuModel->getBahanBaku($idBahanBaku),
+            'jenisBahanBaku' => $this->jenisBahanBakuModel->getJenisBahanBaku()
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/inputBahanBaku');
-        echo view('Layout/footer');
+        // echo view('Layout/header', $data);
+        // echo view('Inventory/inputBahanBaku', $data);
+        // echo view('Layout/footer');
+        return view('Inventory/inputBahanBaku', $data);
+    }
+
+    public function submitBahanBaku()
+    {
+        // dd($this->request->getPost('id_bahan_baku'), $this->request->getPost('stock_bahan_baku'), $this->bahanBakuModel->where('id_bahan_baku', 110001)->first());
+
+        // $idBahanBaku = $this->request->getPost('id_bahan_baku');
+        // $namaBahanBaku = $this->bahanBakuModel->find($idBahanBaku);
+
+        $data = [
+            'id_bahan_baku' => $this->request->getPost('id_bahan_baku'),
+            // 'nama_bahan_baku' => $namaBahanBaku['nama_bahan_baku'],
+            'nama_bahan_baku' => $this->request->getPost('nama_bahan_baku'),
+            'id_jenis_bahan_baku' => $this->request->getPost('id_jenis_bahan_baku'),
+            'stock_bahan_baku' => $this->request->getPost('stock_bahan_baku')
+        ];
+
+        // dd($data);
+
+        // $this->bahanBakuModel->where('id_bahan_baku', $idBahanBaku)->set($data);
+        $this->bahanBakuModel->save($data);
+        echo ("data disimpan");
+
+
+        // if (!empty($idBahanBaku)) {
+        //     $this->bahanBakuModel->save($data);
+        //     echo ("save diproses");
+        // } else {
+        //     echo ("datanya kosong");
+        //     $this->bahanBakuModel->findAll();
+        //     echo ($this->bahanBakuModel->findAll()[0]['id_bahan_baku']);
+        //     dd($this->bahanBakuModel->findAll());
+        // }
+
+        // return redirect()->to('/informasi-bahan-baku');
     }
 
     public function cetakLaporan()

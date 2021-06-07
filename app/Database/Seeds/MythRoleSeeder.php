@@ -18,21 +18,26 @@ class MythRoleSeeder extends Seeder
 			],
 			[
 				'id' => '2',
-				'name'    => 'SalesMarketing',
-				'description'    => 'User Group SalesMarketing'
-			],
-			[
-				'id' => '3',
 				'name'    => 'Produksi',
 				'description'    => 'User Group Produksi'
 			],
 			[
-				'id' => '4',
+				'id' => '3',
 				'name'    => 'Purchasing',
 				'description'    => 'User Group Purchasing'
 			],
 			[
+				'id' => '4',
+				'name'    => 'Finance',
+				'description'    => 'User Group Finance'
+			],
+			[
 				'id' => '5',
+				'name'    => 'SalesMarketing',
+				'description'    => 'User Group SalesMarketing'
+			],
+			[
+				'id' => '6',
 				'name'    => 'Supplier',
 				'description'    => 'User Group Supplier'
 			]

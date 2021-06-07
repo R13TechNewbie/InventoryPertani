@@ -21,40 +21,25 @@
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>No.</th>
                                         <th>Nama Bahan Baku</th>
                                         <th>Stok</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Beras 1 KG</td>
-                                        <td>3</td>
-                                        <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
-                                            <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Beras 5 KG</td>
-                                        <td>5</td>
-                                        <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
-                                            <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Bibit Tomat</td>
-                                        <td>7</td>
-                                        <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
-                                            <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
-                                        </td>
-                                    </tr>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($bahanBaku as $b) : ?>
+                                        <tr>
+                                            <th><?= $i++; ?></th>
+                                            <td><?= $b['nama_bahan_baku']; ?></td>
+                                            <td><?= $b['stock_bahan_baku']; ?></td>
+                                            <td>
+                                                <a href="/input-bahan-baku/<?= $b['id_bahan_baku']; ?>"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                                <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

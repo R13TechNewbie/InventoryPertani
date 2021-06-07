@@ -36,6 +36,13 @@ $routes->setAutoRoute(true);
 
 $routes->get('/', 'Home::index');
 $routes->get('/testdd', 'Home::testdd');
+$routes->get('/test-insert', 'Home::tesInsert');
+$routes->get('/test-update', 'Home::tesUpdate');
+$routes->post('/terima-insert', 'Home::terimaInsert');
+$routes->post('/terima-update', 'Home::terimaUpdate');
+$routes->get('/test-insert-bahan-baku', 'Home::tesInsertBahanBaku');
+$routes->post('/terima-insert-bahan-baku', 'Home::terimaInsertBahanBaku');
+
 
 $routes->group('', ['filter' => 'role:Inventory'], function ($routes) {
 	$routes->get('/inventory', 'Inventory::index');
@@ -52,6 +59,9 @@ $routes->group('', ['filter' => 'role:Inventory'], function ($routes) {
 	$routes->get('/purchase-order', 'Inventory::purchaseOrder');
 	$routes->get('/informasi-bahan-baku', 'Inventory::informasiBahanBaku');
 	$routes->get('/input-bahan-baku', 'Inventory::inputBahanBaku');
+	$routes->post('/input-bahan-baku/submit', 'Inventory::submitBahanBaku');
+	$routes->post('/input-bahan-baku-submit', 'Inventory::submitBahanBaku');
+	$routes->get('/input-bahan-baku/(:num)', 'Inventory::inputBahanBaku/$1');
 	$routes->get('/cetak-laporan', 'Inventory::cetakLaporan');
 });
 
