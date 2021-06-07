@@ -36,12 +36,29 @@
                                             <td><?= $b['stock_bahan_baku']; ?></td>
                                             <td>
                                                 <a href="/input-bahan-baku/<?= $b['id_bahan_baku']; ?>"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
-                                                <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
+                                                <a href="#"><button class="btn btn-danger" data-toggle="modal" data-target="#ModalHapus"><i class="fa fa-trash"></i></button></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <!-- modal -->
+                    <div class="modal fade" id="ModalHapus">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Konfirmasi Hapus Data</h5>
+                                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">Apakah anda yakin akan menghapus data "<?= $b['nama_bahan_baku'] ?>" beserta jumlahnya?</div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                    <a href="informasi-bahan-baku/delete/<?= $b['id_bahan_baku']; ?>"><button type="button" class="btn btn-danger">Ya</button></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

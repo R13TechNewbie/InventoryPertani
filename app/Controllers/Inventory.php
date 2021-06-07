@@ -215,14 +215,16 @@ class Inventory extends BaseController
             // 'nama_bahan_baku' => $namaBahanBaku['nama_bahan_baku'],
             'nama_bahan_baku' => $this->request->getPost('nama_bahan_baku'),
             'id_jenis_bahan_baku' => $this->request->getPost('id_jenis_bahan_baku'),
-            'stock_bahan_baku' => $this->request->getPost('stock_bahan_baku')
+            'stock_bahan_baku' => $this->request->getPost('stock_bahan_baku'),
+            'alert' => 'Data berhasil ditambah/diubah'
         ];
 
         // dd($data);
 
         // $this->bahanBakuModel->where('id_bahan_baku', $idBahanBaku)->set($data);
         $this->bahanBakuModel->save($data);
-        echo ("data disimpan");
+
+        return redirect()->to('/informasi-bahan-baku');
 
 
         // if (!empty($idBahanBaku)) {
@@ -236,6 +238,18 @@ class Inventory extends BaseController
         // }
 
         // return redirect()->to('/informasi-bahan-baku');
+    }
+
+    public function deleteBahanBaku($idBahanBaku)
+    {
+        $data = [
+            'title' => 'Inventory',
+            'alert' => 'Data berhasil dihapus'
+        ];
+
+        $this->bahanBakuModel->delete($idBahanBaku);
+
+        return redirect()->to('/informasi-bahan-baku');
     }
 
     public function cetakLaporan()
