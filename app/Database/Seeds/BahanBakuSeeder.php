@@ -18,7 +18,7 @@ class BahanBakuSeeder extends Seeder
 			],
 			[
 				'nama_bahan_baku'    => 'Gabah 5 Kg',
-				'id_jenis_bahan_baku'    => '2',
+				'id_jenis_bahan_baku'    => '1',
 				'stock_bahan_baku' => '2'
 			],
 			[
