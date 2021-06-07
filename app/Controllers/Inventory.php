@@ -178,10 +178,22 @@ class Inventory extends BaseController
 
     public function inputBahanBaku($idBahanBaku = false)
     {
+        if (!empty($idBahanBaku)) {
+            $bahanbaku = $this->bahanBakuModel->getBahanBaku($idBahanBaku);
+            $idJenisBahanBaku = $this->bahanBakuModel->getBahanBaku(($idBahanBaku))['id_jenis_bahan_baku'];
+            $jenisBahanBaku = $this->jenisBahanBakuModel->getJenisBahanBaku($idJenisBahanBaku);
+        } else {
+            $bahanbaku = $this->bahanBakuModel->getBahanBaku();
+            $jenisBahanBaku = $this->jenisBahanBakuModel->getJenisBahanBaku();
+        }
+
+
         $data = [
             'title' => 'Inventory',
             'idBahanBaku' => $idBahanBaku,
-            'bahanBaku' => $this->bahanBakuModel->getBahanBaku($idBahanBaku),
+            'bahanBakuTertentu' => $bahanbaku,
+            'bahanBaku' => $this->bahanBakuModel->getBahanBaku(),
+            'jenisBahanBakuTertentu' => $jenisBahanBaku,
             'jenisBahanBaku' => $this->jenisBahanBakuModel->getJenisBahanBaku()
         ];
 
