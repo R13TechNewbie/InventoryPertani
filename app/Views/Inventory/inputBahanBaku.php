@@ -18,34 +18,32 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+                        <!-- php($validation->listErrors();) -->
                         <h4 class="card-title">Input Bahan Baku</h4>
                         <div class="form-validation">
                             <form class="form-valide" action="/input-bahan-baku/submit" method="post">
                                 <?php if (empty($idBahanBaku)) : ?>
                                     <div class="form-group row">
-                                        <!-- <label class="col-lg-4 col-form-label" for="val-items">Nama Bahan Baku<span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <select class="form-control" id="id_bahan_baku" name="id_bahan_baku" autofocus>
-                                                <option value="">Please select</option>
-                                                <?php foreach ($bahanBaku as $b) : ?>
-                                                    <option value="<?= $b['id_bahan_baku']; ?>"><?= $b['nama_bahan_baku']; ?></option>
-                                                <?php endforeach ?>
-                                            </select>
-                                        </div> -->
                                         <label class="col-lg-4 col-form-label" for="val-items">Nama Bahan Baku<span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" id="nama_bahan_baku" name="nama_bahan_baku" placeholder="Bibit Semangka 500gr">
+                                            <input type="text" class="form-control <?= ($validation->hasError('nama_bahan_baku')) ? 'is-invalid' : ''; ?>" id="nama_bahan_baku" name="nama_bahan_baku" placeholder="Bibit Semangka 500gr" value="<?= old('nama_bahan_baku'); ?>">
+                                            <div class="invalid-feedback">
+                                                <?= $validation->getError('nama_bahan_baku'); ?>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val-items">Jenis Bahan Baku<span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <select class="form-control" id="id_jenis_bahan_baku" name="id_jenis_bahan_baku" autofocus>
+                                            <select class="form-control" id="id_jenis_bahan_baku" name="id_jenis_bahan_baku">
                                                 <?php foreach ($jenisBahanBaku as $b) : ?>
-                                                    <option value="<?= $b['id_jenis_bahan_baku']; ?>"><?= $b['jenis_bahan_baku']; ?></option>
+                                                    <?php if ($b['id_jenis_bahan_baku'] == old('id_jenis_bahan_baku')) : ?>
+                                                        <option value="<?= $b['id_jenis_bahan_baku']; ?>" selected><?= $b['jenis_bahan_baku']; ?></option>
+                                                    <?php else : ?>
+                                                        <option value="<?= $b['id_jenis_bahan_baku']; ?>"><?= $b['jenis_bahan_baku']; ?></option>
+                                                    <?php endif; ?>
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
@@ -57,17 +55,20 @@
                                         <label class="col-lg-4 col-form-label" for="val-digits">Jumlah <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="number" class="form-control" id="stock_bahan_baku" name="stock_bahan_baku" placeholder="5">
+                                            <input type="number" class="form-control" id="stock_bahan_baku" name="stock_bahan_baku" placeholder="5" value="<?= old('stock_bahan_baku'); ?>">
                                         </div>
                                     </div>
                                 <?php else : ?>
                                     <div class="form-group row">
 
+                                        <input type="hidden" class="form-control" id="id_bahan_baku" name="id_bahan_baku" placeholder="Bibit Semangka 500gr" value="<?= $bahanBakuTertentu['id_bahan_baku']; ?>">
                                         <label class="col-lg-4 col-form-label" for="val-items">Nama Bahan Baku<span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="hidden" class="form-control" id="id_bahan_baku" name="id_bahan_baku" placeholder="Bibit Semangka 500gr" value="<?= $bahanBakuTertentu['id_bahan_baku']; ?>">
-                                            <input type="text" class="form-control" id="nama_bahan_baku" name="nama_bahan_baku" placeholder="Bibit Semangka 500gr" value="<?= $bahanBakuTertentu['nama_bahan_baku']; ?>">
+                                            <input type="text" class="form-control <?= ($validation->hasError('nama_bahan_baku')) ? 'is-invalid' : ''; ?>" id="nama_bahan_baku" name="nama_bahan_baku" placeholder="Bibit Semangka 500gr" value="<?= (old('nama_bahan_baku') == '') ? $bahanBakuTertentu['nama_bahan_baku'] : old('nama_bahan_baku'); ?>">
+                                            <div class="invalid-feedback">
+                                                <?= $validation->getError('nama_bahan_baku'); ?>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -75,9 +76,18 @@
                                         </label>
                                         <div class="col-lg-6">
                                             <select class="form-control" id="id_jenis_bahan_baku" name="id_jenis_bahan_baku" autofocus>
-                                                <option value="<?= $bahanBakuTertentu['id_jenis_bahan_baku'] ?>"><?= $jenisBahanBakuTertentu['jenis_bahan_baku']; ?></option>
+                                                <!-- <option value="<?= $bahanBakuTertentu['id_jenis_bahan_baku'] ?>"><?= $jenisBahanBakuTertentu['jenis_bahan_baku']; ?></option> -->
                                                 <?php foreach ($jenisBahanBaku as $b) : ?>
-                                                    <?php if ($b['id_jenis_bahan_baku'] != $bahanBakuTertentu['id_jenis_bahan_baku']) : ?>
+                                                    <?php if (!empty(old('id_jenis_bahan_baku'))) : ?>
+                                                        <?php if ($b['id_jenis_bahan_baku'] == old('id_jenis_bahan_baku')) : ?>
+                                                            <option value="<?= $b['id_jenis_bahan_baku']; ?>" selected><?= $b['jenis_bahan_baku']; ?></option>
+                                                        <?php else : ?>
+                                                            <option value="<?= $b['id_jenis_bahan_baku']; ?>"><?= $b['jenis_bahan_baku']; ?></option>
+                                                        <?php endif; ?>
+
+                                                    <?php elseif ($b['id_jenis_bahan_baku'] == $bahanBakuTertentu['id_jenis_bahan_baku']) : ?>
+                                                        <option value="<?= $b['id_jenis_bahan_baku']; ?>" selected><?= $b['jenis_bahan_baku']; ?></option>
+                                                    <?php else : ?>
                                                         <option value="<?= $b['id_jenis_bahan_baku']; ?>"><?= $b['jenis_bahan_baku']; ?></option>
                                                     <?php endif; ?>
                                                 <?php endforeach ?>
@@ -91,7 +101,7 @@
                                         <label class="col-lg-4 col-form-label" for="val-digits">Jumlah <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="number" class="form-control" id="stock_bahan_baku" name="stock_bahan_baku" placeholder="5" value="<?= $bahanBakuTertentu['stock_bahan_baku']; ?>">
+                                            <input type="number" class="form-control" id="stock_bahan_baku" name="stock_bahan_baku" placeholder="5" value="<?= (old('stock_bahan_baku') == '') ? $bahanBakuTertentu['stock_bahan_baku'] : old('stock_bahan_baku'); ?>">
                                         </div>
                                     </div>
                                 <?php endif; ?>

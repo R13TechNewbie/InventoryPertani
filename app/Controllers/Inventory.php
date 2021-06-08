@@ -7,20 +7,19 @@ use Config\View;
 
 use App\Models\BahanBakuModel;
 use App\Models\JenisBahanBakuModel;
-use CodeIgniter\Session\Session;
 use PhpParser\Node\Stmt\Echo_;
 
 class Inventory extends BaseController
 {
     protected $bahanBakuModel;
     protected $jenisBahanBakuModel;
-    protected $session;
+    protected $validation;
 
     public function __construct()
     {
         $this->bahanBakuModel = new BahanBakuModel();
         $this->jenisBahanBakuModel = new JenisBahanBakuModel();
-        $this->session = \Config\Services::session();
+        $this->validation = \Config\Services::validation();
     }
 
     public function index()
@@ -182,8 +181,6 @@ class Inventory extends BaseController
     public function inputBahanBaku($idBahanBaku = false)
     {
 
-        $this->session->set('referred_from', current_url());
-
         if (!empty($idBahanBaku)) {
             $bahanbaku = $this->bahanBakuModel->getBahanBaku($idBahanBaku);
             $idJenisBahanBaku = $this->bahanBakuModel->getBahanBaku(($idBahanBaku))['id_jenis_bahan_baku'];
@@ -199,7 +196,8 @@ class Inventory extends BaseController
             'bahanBakuTertentu' => $bahanbaku,
             'bahanBaku' => $this->bahanBakuModel->getBahanBaku(),
             'jenisBahanBakuTertentu' => $jenisBahanBaku,
-            'jenisBahanBaku' => $this->jenisBahanBakuModel->getJenisBahanBaku()
+            'jenisBahanBaku' => $this->jenisBahanBakuModel->getJenisBahanBaku(),
+            'validation' => $this->validation
         ];
 
         // echo view('Layout/header', $data);
@@ -210,10 +208,19 @@ class Inventory extends BaseController
 
     public function submitBahanBaku()
     {
-        // dd($this->request->getPost('id_bahan_baku'), $this->request->getPost('stock_bahan_baku'), $this->bahanBakuModel->where('id_bahan_baku', 110001)->first());
+        // validasi input
 
-        // $idBahanBaku = $this->request->getPost('id_bahan_baku');
-        // $namaBahanBaku = $this->bahanBakuModel->find($idBahanBaku);
+        if (!$this->validate([
+            'nama_bahan_baku' => [
+                'rules' => 'required|max_length[20]',
+                'errors' => [
+                    'required' => 'Nama bahan baku harus diisi',
+                    'max_length' => 'Nama bahan baku tidak boleh lebih dari 20 karakter'
+                ]
+            ]
+        ])) {
+            return redirect()->back()->withInput()->with('validation', $this->validation->getErrors());
+        }
 
         $data = [
             'id_bahan_baku' => $this->request->getPost('id_bahan_baku'),
