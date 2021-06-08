@@ -16,6 +16,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Input Bahan Baku</h4>
+                        <?php if (session()->getFlashData('pesan')) : ?>
+                            <div class="alert alert-success" role="alert">
+                                <?= session()->getFlashData('pesan'); ?>
+                            </div>
+                        <?php endif; ?>
                         <a href="/input-bahan-baku"><button type="button" class="btn mb-1 btn-primary mt-2" style="width: 100%;">Input Bahan Baku</button></a>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
@@ -45,22 +50,28 @@
                         </div>
                     </div>
                     <!-- modal -->
-                    <div class="modal fade" id="ModalHapus">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Konfirmasi Hapus Data</h5>
-                                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">Apakah anda yakin akan menghapus data "<?= $b['nama_bahan_baku'] ?>" beserta jumlahnya?</div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                                    <a href="informasi-bahan-baku/delete/<?= $b['id_bahan_baku']; ?>"><button type="button" class="btn btn-danger">Ya</button></a>
+                    <form action="/informasi-bahan-baku/delete/<?= $b['id_bahan_baku']; ?>" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <div class="modal fade" id="ModalHapus">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Konfirmasi Hapus Data</h5>
+                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">Apakah anda yakin akan menghapus data "<?= $b['nama_bahan_baku']; ?>" beserta jumlahnya?</div>
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                        <!-- <a href="informasi-bahan-baku/delete/$b(id_bahan_Baku)"> -->
+                                        <button type="submit" class="btn btn-danger">Ya</button>
+                                        <!-- </a> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

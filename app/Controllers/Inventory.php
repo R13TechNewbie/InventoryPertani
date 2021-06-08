@@ -172,7 +172,6 @@ class Inventory extends BaseController
             'bahanBaku' => $this->bahanBakuModel->getBahanBaku()
         ];
 
-
         echo view('Layout/header', $data);
         echo view('Inventory/informasiBahanBaku', $data);
         echo view('Layout/footer');
@@ -231,10 +230,9 @@ class Inventory extends BaseController
             'alert' => 'Data berhasil ditambah/diubah'
         ];
 
-        // dd($data);
-
-        // $this->bahanBakuModel->where('id_bahan_baku', $idBahanBaku)->set($data);
         $this->bahanBakuModel->save($data);
+
+        session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');
 
         return redirect()->to('/informasi-bahan-baku');
 
@@ -261,6 +259,8 @@ class Inventory extends BaseController
 
         $this->bahanBakuModel->delete($idBahanBaku);
 
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+
         return redirect()->to('/informasi-bahan-baku');
     }
 
@@ -270,8 +270,6 @@ class Inventory extends BaseController
             'title' => 'Inventory',
             'alert' => 'Jenis bahan baku berhasil ditambah'
         ];
-
-        // dd($this->request->getPost());
 
         $input = $this->request->getPost('tambahJenisBahanBaku');
         $idJenisBahanBaku = '';
@@ -287,7 +285,9 @@ class Inventory extends BaseController
             'jenis_bahan_baku' => $input
         ]);
 
-        return redirect()->to($this->session->get('referred_from'));
+        session()->setFlashdata('pesan', 'Jenis bahan baku berhasil ditambahkan');
+
+        return redirect()->back();
     }
 
     public function cetakLaporan()
