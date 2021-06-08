@@ -49,6 +49,9 @@
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
+                                        <div class="col-lg-2">
+                                            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#tambahJenisBahanBakuModal"><i class="fa fa-plus"></i></button>
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val-digits">Jumlah <span class="text-danger">*</span>
@@ -80,6 +83,9 @@
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
+                                        <div class="col-lg-2">
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#tambahJenisBahanBakuModal"><i class="fa fa-plus"></i></button>
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val-digits">Jumlah <span class="text-danger">*</span>
@@ -93,6 +99,28 @@
                                     <div class="col-lg-8 ml-auto">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <a href="/informasi-bahan-baku"><button type="button" class="btn btn-danger">Cancel</button></a>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- modal -->
+                            <form method="post" action="/input-bahan-baku/tambah-jenis-bahan-baku">
+                                <div class="modal fade" id="tambahJenisBahanBakuModal">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Buat Jenis Bahan Baku Baru</h5>
+                                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label class="col-form-label">Silakan masukkan nama jenis bahan baku baru ke isian dibawah ini : </label>
+                                                <input class="col-lg-11" type="text" id="tambahJenisBahanBaku" name="tambahJenisBahanBaku" placeholder="Bibit">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-primary">Tambah</button></a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>

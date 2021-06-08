@@ -18,6 +18,10 @@ class JenisBahanBaku extends Seeder
 				'id_jenis_bahan_baku'    => '2',
 				'jenis_bahan_baku'    => 'Bibit',
 			],
+			[
+				'id_jenis_bahan_baku'    => '3',
+				'jenis_bahan_baku'    => 'Lain-lain',
+			],
 		];
 
 		$this->db->table('jenis_bahan_baku')->insertBatch($data);

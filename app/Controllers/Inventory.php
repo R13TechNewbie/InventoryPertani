@@ -7,17 +7,20 @@ use Config\View;
 
 use App\Models\BahanBakuModel;
 use App\Models\JenisBahanBakuModel;
+use CodeIgniter\Session\Session;
 use PhpParser\Node\Stmt\Echo_;
 
 class Inventory extends BaseController
 {
     protected $bahanBakuModel;
     protected $jenisBahanBakuModel;
+    protected $session;
 
     public function __construct()
     {
         $this->bahanBakuModel = new BahanBakuModel();
         $this->jenisBahanBakuModel = new JenisBahanBakuModel();
+        $this->session = \Config\Services::session();
     }
 
     public function index()
@@ -178,6 +181,9 @@ class Inventory extends BaseController
 
     public function inputBahanBaku($idBahanBaku = false)
     {
+
+        $this->session->set('referred_from', current_url());
+
         if (!empty($idBahanBaku)) {
             $bahanbaku = $this->bahanBakuModel->getBahanBaku($idBahanBaku);
             $idJenisBahanBaku = $this->bahanBakuModel->getBahanBaku(($idBahanBaku))['id_jenis_bahan_baku'];
@@ -186,7 +192,6 @@ class Inventory extends BaseController
             $bahanbaku = $this->bahanBakuModel->getBahanBaku();
             $jenisBahanBaku = $this->jenisBahanBakuModel->getJenisBahanBaku();
         }
-
 
         $data = [
             'title' => 'Inventory',
@@ -250,6 +255,32 @@ class Inventory extends BaseController
         $this->bahanBakuModel->delete($idBahanBaku);
 
         return redirect()->to('/informasi-bahan-baku');
+    }
+
+    public function tambahJenisBahanBaku()
+    {
+        $data = [
+            'title' => 'Inventory',
+            'alert' => 'Jenis bahan baku berhasil ditambah'
+        ];
+
+        // dd($this->request->getPost());
+
+        $input = $this->request->getPost('tambahJenisBahanBaku');
+        $idJenisBahanBaku = '';
+
+        foreach ($this->jenisBahanBakuModel->getJenisBahanBaku() as $jenisBahanBaku) {
+            if ($jenisBahanBaku['jenis_bahan_baku'] == $input) {
+                $idJenisBahanBaku = $jenisBahanBaku['id_jenis_bahan_baku'];
+            }
+        };
+
+        $this->jenisBahanBakuModel->save([
+            'id_jenis_bahan_baku' => $idJenisBahanBaku,
+            'jenis_bahan_baku' => $input
+        ]);
+
+        return redirect()->to($this->session->get('referred_from'));
     }
 
     public function cetakLaporan()
