@@ -24,11 +24,17 @@
                                     </div>
                                     <p class="mb-1">Lihat serta buat permintaan bahan baku kepada Inventory</p>
                                 </a>
-                                <a href="/input-barang-jadi-produksi" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <a href="/penerimaan-bahan-baku" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Input Barang Jadi</h5>
+                                        <h5 class="mb-1">Penerimaan Bahan Baku</h5>
                                     </div>
-                                    <p class="mb-1">Input daftar barang jadi ke Inventory</p>
+                                    <p class="mb-1">Lihat bahan baku yang sudah dikirim Inventory</p>
+                                </a>
+                                <a href="/informasi-laporan-barang-jadi" class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Informasi Laporan Barang Jadi</h5>
+                                    </div>
+                                    <p class="mb-1">Lihat dan input laporan barang jadi ke Inventory</p>
                                 </a>
                             </div>
                         </div>

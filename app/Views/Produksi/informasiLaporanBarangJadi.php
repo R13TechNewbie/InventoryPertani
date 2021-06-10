@@ -19,34 +19,34 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Request Bahan Baku</h4>
+                        <h4 class="card-title">Laporan Barang Jadi</h4>
                         <?php if (session()->getFlashData('pesan')) : ?>
                             <div class="alert alert-success" role="alert">
                                 <?= session()->getFlashData('pesan'); ?>
                             </div>
                         <?php endif; ?>
-                        <a href="/request-bahan-baku"><button type="button" class="btn mb-1 btn-primary mt-2" style="width: 100%;">Request Bahan Baku</button></a>
+                        <a href="/input-barang-jadi-produksi"><button type="button" class="btn mb-1 btn-primary mt-2" style="width: 100%;">Input Laporan Barang Jadi</button></a>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
                                     <tr>
-                                        <th>Id Pesanan</th>
+                                        <th>No.</th>
                                         <th>Nama Bahan Baku</th>
                                         <th>Jumlah Pesanan</th>
                                         <th>Tanggal Pesanan</th>
-                                        <th>Status</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($reqBahanBaku as $b) : ?>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($barangJadiMasuk as $b) : ?>
                                         <tr>
-                                            <td><?= $b['id_req_bahan_baku']; ?></td>
-                                            <td><?= $bahanBaku->find($b['id_bahan_baku'])['nama_bahan_baku']; ?></td>
+                                            <td><?= $i++; ?></td>
+                                            <td><?= $barangJadi->find($b['id_barang_jadi'])['nama_barang_jadi']; ?></td>
                                             <td><?= $b['kuantitas']; ?></td>
-                                            <td><?= $b['tgl_request']; ?></td>
-                                            <td><?= $b['status']; ?></td>
+                                            <td><?= $b['tgl_barang_jadi_masuk']; ?></td>
                                             <td>
-                                                <a href="/request-bahan-baku/<?= $b['id_req_bahan_baku']; ?>"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
+                                                <a href="/input-barang-jadi-produksi/<?= $b['id_barang_jadi']; ?>"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
                                                 <a href="#"><button class="btn btn-danger" data-toggle="modal" data-target="#ModalHapus"><i class="fa fa-trash"></i></button></a>
                                             </td>
                                         </tr>
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <!-- modal -->
-                    <form action="/informasi-request-bahan-baku/delete/<?= $b['id_req_bahan_baku']; ?>" method="post">
+                    <form action="/informasi-laporan-barang-jadi/delete/<?= $b['id_barang_jadi_masuk']; ?>" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <div class="modal fade" id="ModalHapus">
                             <div class="modal-dialog" role="document">
@@ -66,11 +66,11 @@
                                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">Apakah anda yakin akan menghapus pesanan "<?= $bahanBaku->find($b['id_bahan_baku'])['nama_bahan_baku']; ?>" beserta jumlahnya?</div>
+                                    <div class="modal-body">Apakah anda yakin akan menghapus laporan barang jadi "<?= $barangJadi->find($b['id_barang_jadi'])['nama_barang_jadi']; ?>" beserta jumlahnya?</div>
                                     <input type="hidden" name="_method" value="DELETE">
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                                        <!-- <a href="informasi-bahan-baku/delete/$b(id_bahan_Baku)"> -->
+                                        <!-- <a href="informasi-bahan-baku/delete/$b(id_barang_jadi)"> -->
                                         <button type="submit" class="btn btn-danger">Ya</button>
                                         <!-- </a> -->
                                     </div>

@@ -3,8 +3,12 @@
 namespace App\Controllers;
 
 use App\Database\Migrations\JenisBahanBaku;
+use App\Models\BahanBakuKeluarModel;
 use App\Models\BahanBakuModel;
+use App\Models\BarangJadiMasukModel;
+use App\Models\BarangJadiModel;
 use App\Models\JenisBahanBakuModel;
+use App\Models\JenisBarangJadiModel;
 use App\Models\RequestBahanBakuModel;
 use CodeIgniter\I18n\Time;
 use Config\View;
@@ -16,6 +20,10 @@ class Produksi extends BaseController
     protected $requestBahanBakuModel;
     protected $bahanBakuModel;
     protected $jenisBahanBakuModel;
+    protected $bahanBakuKeluarModel;
+    protected $barangJadiMasukModel;
+    protected $barangJadiModel;
+    protected $jenisBarangJadiModel;
     protected $myTime;
     protected $validation;
 
@@ -24,6 +32,10 @@ class Produksi extends BaseController
         $this->requestBahanBakuModel = new RequestBahanBakuModel();
         $this->bahanBakuModel = new BahanBakuModel();
         $this->jenisBahanBakuModel = new JenisBahanBakuModel();
+        $this->bahanBakuKeluarModel = new BahanBakuKeluarModel();
+        $this->barangJadiMasukModel = new BarangJadiMasukModel();
+        $this->barangJadiModel = new BarangJadiModel();
+        $this->jenisBarangJadiModel = new JenisBarangJadiModel();
         $this->myTime = new Time('now', 'Asia/Jakarta', 'id_ID');
         $this->validation = \Config\Services::validation();
     }
@@ -156,22 +168,148 @@ class Produksi extends BaseController
     public function penerimaanBahanBaku()
     {
         $data = [
-            'title' => 'Produksi'
+            'title' => 'Produksi',
+            'requestBahanBaku' => $this->requestBahanBakuModel->getRequestBahanBaku(),
+            'bahanBaku' => $this->bahanBakuModel,
+            'bahanBakuKeluar' => $this->bahanBakuKeluarModel->getBahanBakuKeluar(),
+            'reqBahanBakuTertentu' => $this->requestBahanBakuModel,
+            'bahanBakuKeluarTertentu' => $this->bahanBakuKeluarModel,
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Produksi/penerimaanBahanBaku');
-        echo view('Layout/footer');
+        return view('Produksi/penerimaanBahanBaku', $data);
     }
 
-    public function inputBarangJadi()
+    public function informasiLaporanBarangJadi()
     {
+        # code...
         $data = [
-            'title' => 'Produksi'
+            'title' => 'Produksi',
+            'barangJadiMasuk' => $this->barangJadiMasukModel->getBarangJadiMasuk(),
+            'barangJadi' => $this->barangJadiModel,
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Produksi/inputBarangJadi');
-        echo view('Layout/footer');
+        return view('Produksi/informasiLaporanBarangJadi', $data);
+    }
+
+    public function inputBarangJadi($idBarangJadi = false)
+    {
+        if (!empty($idBarangJadi)) {
+            $barangJadi = $this->barangJadiModel->getBarangJadi($idBarangJadi);
+            $idJenisBarangJadi = $this->barangJadiModel->getBarangJadi(($idBarangJadi))['id_jenis_barang_jadi'];
+            $jenisBarangJadi = $this->jenisBarangJadiModel->getJenisBarangJadi($idJenisBarangJadi);
+        } else {
+            $barangJadi = $this->barangJadiModel->getBarangJadi();
+            $jenisBarangJadi = $this->jenisBarangJadiModel->getJenisBarangJadi();
+        }
+
+        $data = [
+            'title' => 'Produksi',
+            'idBarangJadi' => $idBarangJadi,
+            'barangJadiTertentu' => $barangJadi,
+            'barangJadi' => $this->barangJadiModel->getBarangJadi(),
+            'jenisBarangJadiTertentu' => $jenisBarangJadi,
+            'jenisBarangJadi' => $this->jenisBarangJadiModel->getJenisBarangJadi(),
+            'validation' => $this->validation
+        ];
+
+        return view('Produksi/inputBarangJadi', $data);
+    }
+
+    public function tambahJenisInputBarangJadi($jenisBarangJadi)
+    {
+        # code...
+        if (!$this->validate([
+
+            'jenis_barang_jadi' => [
+                'rules' => 'required|max_length[20]',
+                'errors' => [
+                    'required' => 'Nama bahan baku harus diisi',
+                    'max_length' => 'Nama bahan baku tidak boleh lebih dari 20 karakter'
+                ]
+            ]
+        ])) {
+            return redirect()->to('/input-barang-jadi-produksi')->withInput()->with('validation', $this->validation->getErrors());
+        }
+
+        $idJenisBarangJadi = '';
+
+        foreach ($this->jenisBarangJadiModel->getBarangJadi() as $b) {
+            if ($this->request->getPost('jenis_barang_jadi') == $b['jenis_barang_jadi']) {
+                $idJenisBarangJadi = $b['id_jenis_barang_jadi'];
+            }
+        }
+
+
+        $data = [
+            'id_jenis_barang_jadi' => $idJenisBarangJadi,
+            'jenis_barang_jadi' => $jenisBarangJadi,
+            'alert' => 'Data berhasil ditambah/diubah'
+        ];
+
+
+        $this->jenisBarangJadiModel->save($data);
+
+        session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');
+
+        return redirect()->back();
+    }
+
+    public function submitInputBarangJadi()
+    {
+        # code...
+        // validasi input
+
+        if (!$this->validate([
+            'nama_barang_jadi' => [
+                'rules' => 'required|max_length[20]',
+                'errors' => [
+                    'required' => 'Nama bahan baku harus diisi',
+                    'max_length' => 'Nama bahan baku tidak boleh lebih dari 20 karakter'
+                ]
+            ]
+        ])) {
+            return redirect()->to('/input-barang-jadi-produksi')->withInput()->with('validation', $this->validation->getErrors());
+        }
+
+        foreach ($this->barangJadiModel->getBarangJadi() as $b) {
+            if ($b['nama_barang_jadi'] == $this->request->getPost('nama_barang_jadi')) {
+                $idBarangJadi = $b['id_barang_jadi'];
+            }
+        };
+
+        $data = [
+            'id_barang_jadi' => $idBarangJadi,
+            'nama_barang_jadi' => $this->request->getPost('nama_barang_jadi'),
+            'id_jenis_barang_jadi' => $this->request->getPost('id_jenis_barang_jadi'),
+            'kuantitas' => $this->request->getPost('stock_barang_jadi'),
+            'tgl_barang_jadi_masuk' => $this->myTime,
+            'alert' => 'Data berhasil ditambah/diubah'
+        ];
+
+        if (empty($data['id_barang_jadi'])) {
+            $this->barangJadiModel->save($data);
+            $data['id_barang_jadi'] = $this->barangJadiModel->find($data['nama_barang_jadi']);
+        }
+
+        $this->barangJadiMasukModel->save($data);
+
+        session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');
+
+        return redirect()->to('/informasi-laporan-barang-jadi');
+    }
+
+    public function deleteLaporanBarangJadi($idBarangJadiMasuk)
+    {
+        # code...
+        $data = [
+            'title' => 'Produksi',
+            'alert' => 'Data berhasil dihapus'
+        ];
+
+        $this->barangJadiMasukModel->delete($idBarangJadiMasuk);
+
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+
+        return redirect()->to('/informasi-laporan-barang-jadi');
     }
 }

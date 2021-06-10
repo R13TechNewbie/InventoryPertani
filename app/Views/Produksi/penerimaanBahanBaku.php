@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -21,42 +25,24 @@
                                 <thead>
                                     <tr>
                                         <th>Id Pesanan</th>
-                                        <th>Tanggal Pesanan</th>
-                                        <th>Produk Yang Dipesan</th>
-                                        <th>status</th>
+                                        <th>Nama Bahan Baku</th>
+                                        <th>Kuantitas</th>
+                                        <th>Id Bahan Baku</th>
+                                        <th>Tanggal Proses</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>820012</th>
-                                        <td>10 Januari 2021</td>
-                                        <td>
-                                            <p>- Gabah 5KG</p>
-                                            <p>- Benih Tomat 1KG</p>
-                                            <p>- Benih Semangka 1KG</p>
-                                        </td>
-                                        <td>terkirim</td>
-                                    </tr>
-                                    <tr>
-                                        <th>820013</th>
-                                        <td>10 Februari 2021</td>
-                                        <td>
-                                            <p>- Gabah 5KG</p>
-                                            <p>- Benih Tomat 1KG</p>
-                                            <p>- Benih Semangka 1KG</p>
-                                        </td>
-                                        <td>terkirim</td>
-                                    </tr>
-                                    <tr>
-                                        <th>820014</th>
-                                        <td>10 Maret 2021</td>
-                                        <td>
-                                            <p>- Gabah 5KG</p>
-                                            <p>- Benih Tomat 1KG</p>
-                                            <p>- Benih Semangka 1KG</p>
-                                        </td>
-                                        <td>diproses</td>
-                                    </tr>
+                                    <?php foreach ($bahanBakuKeluar as $b) : ?>
+                                        <tr>
+                                            <td><?= $b['id_bahan_baku_keluar']; ?></td>
+                                            <td><?= $bahanBaku->find($reqBahanBakuTertentu->find($bahanBakuKeluarTertentu->find($b['id_bahan_baku_keluar'])['id_req_bahan_baku'])['id_bahan_baku'])['nama_bahan_baku']; ?></td>
+                                            <td><?= $reqBahanBakuTertentu->find($bahanBakuKeluarTertentu->find($b['id_bahan_baku_keluar'])['id_req_bahan_baku'])['kuantitas']; ?></td>
+                                            <td><?= $reqBahanBakuTertentu->find($bahanBakuKeluarTertentu->find($b['id_bahan_baku_keluar'])['id_req_bahan_baku'])['id_bahan_baku']; ?></td>
+                                            <td><?= $reqBahanBakuTertentu->find($bahanBakuKeluarTertentu->find($b['id_bahan_baku_keluar'])['id_req_bahan_baku'])['tgl_request']; ?></td>
+                                            <td><?= $b['status']; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -67,3 +53,5 @@
     </div>
     <!-- #/ container -->
 </div>
+
+<?= $this->endSection(); ?>
