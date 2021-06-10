@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <!-- modal -->
-                    <form action="/informasi-request-barang-jadi/delete/<?= $b['id_barang_jadi']; ?>" method="post">
+                    <form action="/informasi-request-barang-jadi/delete/<?= $b['id_req_barang_jadi_keluar']; ?>" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <div class="modal fade" id="ModalHapus">
                             <div class="modal-dialog" role="document">

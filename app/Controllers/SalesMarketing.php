@@ -105,6 +105,22 @@ class SalesMarketing extends BaseController
         return redirect()->to('/informasi-request-barang-jadi');
     }
 
+    public function deleteRequestBarangJadi($idReqBarangJadiKeluar)
+    {
+        # code...
+
+        $data = [
+            'title' => 'Inventory',
+            'alert' => 'Data berhasil dihapus'
+        ];
+
+        $this->RequestBarangJadiKeluarModel->delete($idReqBarangJadiKeluar);
+
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+
+        return redirect()->to('/informasi-request-barang-jadi');
+    }
+
     public function stokBarangJadiKeluar()
     {
         $data = [
