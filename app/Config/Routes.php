@@ -89,6 +89,9 @@ $routes->group('', ['filter' => 'role:SalesMarketing'], function ($routes) {
 $routes->group('', ['filter' => 'role:Produksi'], function ($routes) {
 	$routes->get('/produksi', 'Produksi::index');
 	$routes->get('/request-bahan-baku', 'Produksi::requestBahanBaku');
+	$routes->get('/request-bahan-baku/(:num)', 'Produksi::requestBahanBaku/$1');
+	$routes->delete('/informasi-request-bahan-baku/(:num)', 'Produksi::deleteRequestBahanBaku/$1');
+	$routes->get('/informasi-request-bahan-baku', 'Produksi::informasiRequestBahanBaku');
 	$routes->get('/penerimaan-bahan-baku', 'Produksi::penerimaanBahanBaku');
 	$routes->get('/input-barang-jadi-produksi', 'Produksi::inputBarangJadi');
 });

@@ -17,7 +17,8 @@ class RequestBahanBakuSeeder extends Seeder
 				// 'id_req_bahan_baku' => 820001,
 				'id_bahan_baku' => '110001',
 				'kuantitas'		=> 1,
-				'tgl_request'	=> $myTime
+				'tgl_request'	=> $myTime,
+				'status'		=> "Terkirim"
 			],
 		];
 

@@ -33,6 +33,10 @@ class RequestBahanBaku extends Migration
 			'tgl_request'       => [
 				'type'       => 'DATE'
 			],
+			'status'       => [
+				'type'       => 'VARCHAR',
+				'constraint' => 20
+			],
 		]);
 		$this->forge->addKey('id_req_bahan_baku', true);
 		$this->forge->addForeignKey('id_bahan_baku', 'bahan_baku', 'id_bahan_baku');

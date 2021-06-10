@@ -18,17 +18,11 @@
                         <h4 class="card-title">Menu Produksi</h4>
                         <div class="basic-list-group">
                             <div class="list-group">
-                                <a href="/request-bahan-baku" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <a href="/informasi-request-bahan-baku" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Request Bahan Baku</h5>
+                                        <h5 class="mb-1">Informasi Permintaan Bahan Baku</h5>
                                     </div>
-                                    <p class="mb-1">Mengajukan permintaan pengadaan bahan baku ke Inventory</p>
-                                </a>
-                                <a href="/penerimaan-bahan-baku" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Penerimaan Bahan Baku</h5>
-                                    </div>
-                                    <p class="mb-1">Lihat penerimaan bahan baku dari Inventory</p>
+                                    <p class="mb-1">Lihat serta buat permintaan bahan baku kepada Inventory</p>
                                 </a>
                                 <a href="/input-barang-jadi-produksi" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
