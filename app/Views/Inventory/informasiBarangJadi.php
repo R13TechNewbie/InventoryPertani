@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -26,50 +30,56 @@
                                         <th>Jenis Produk</th>
                                         <th>Stok</th>
                                         <th>Tanggal Barang Jadi Masuk</th>
-                                        <th>Edit</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Beras Pertani 1 KG</td>
-                                        <td>Beras</td>
-                                        <td>3</td>
-                                        <td>27 Januari 2021</td>
-                                        <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
-                                            <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Beras Pertani 5 KG</td>
-                                        <td>Beras</td>
-                                        <td>5</td>
-                                        <td>27 Februari 2021</td>
-                                        <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
-                                            <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Bibit Tomat Pertani</td>
-                                        <td>Bibit</td>
-                                        <td>7</td>
-                                        <td>27 Maret 2021</td>
-                                        <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
-                                            <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
-                                        </td>
-                                    </tr>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($barangJadiMasuk as $b) : ?>
+                                        <tr>
+                                            <td><?= $i++; ?></td>
+                                            <td><?= $barangJadi->find($b['id_barang_jadi'])['nama_barang_jadi']; ?></td>
+                                            <td><?= $jenisBarangJadi->find($barangJadi->find($b['id_barang_jadi'])['id_jenis_barang_jadi'])['jenis_barang_jadi']; ?></td>
+                                            <td><?= $b['kuantitas']; ?></td>
+                                            <td><?= $b['tgl_barang_jadi_masuk']; ?></td>
+                                            <td>
+                                                <a href="/input-barang-jadi-inventory/<?= $b['id_barang_jadi_masuk']; ?>"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
+                                                <a href="#"><button class="btn btn-danger" data-toggle="modal" data-target="#ModalHapus"><i class="fa fa-trash"></i></button></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <!-- modal -->
+                    <form action="/informasi-barang-jadi-inventory/delete/<?= $b['id_barang_jadi_masuk']; ?>" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <div class="modal fade" id="ModalHapus">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Konfirmasi Hapus Data</h5>
+                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">Apakah anda yakin akan menghapus data "<?= $barangJadi->find($b['id_barang_jadi'])['nama_barang_jadi']; ?>" beserta jumlahnya?</div>
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                        <!-- <a href="informasi-bahan-baku/delete/$b(id_barang_jadi)"> -->
+                                        <button type="submit" class="btn btn-danger">Ya</button>
+                                        <!-- </a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- #/ container -->
 </div>
+
+<?= $this->endSection(); ?>

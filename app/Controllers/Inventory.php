@@ -8,8 +8,10 @@ use Config\View;
 
 use App\Models\BahanBakuModel;
 use App\Models\BarangJadiKeluarModel;
+use App\Models\BarangJadiMasukModel;
 use App\Models\BarangJadiModel;
 use App\Models\JenisBahanBakuModel;
+use App\Models\JenisBarangJadiModel;
 use App\Models\RequestBahanBakuModel;
 use App\Models\RequestBarangJadiKeluarModel;
 use CodeIgniter\I18n\Time;
@@ -25,6 +27,8 @@ class Inventory extends BaseController
     protected $barangJadiKeluarModel;
     protected $requestBahanBakuModel;
     protected $bahanBakuKeluarModel;
+    protected $barangJadiMasukModel;
+    protected $jenisBarangJadiModel;
 
     public function __construct()
     {
@@ -37,6 +41,8 @@ class Inventory extends BaseController
         $this->myTime = new Time('now', 'Asia/Jakarta', 'id_ID');
         $this->requestBahanBakuModel = new RequestBahanBakuModel();
         $this->bahanBakuKeluarModel = new BahanBakuKeluarModel();
+        $this->barangJadiMasukModel = new BarangJadiMasukModel();
+        $this->jenisBarangJadiModel = new JenisBarangJadiModel();
     }
 
     public function index()
@@ -209,23 +215,138 @@ class Inventory extends BaseController
     public function informasiBarangJadi()
     {
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Inventory',
+            'barangJadiMasuk' => $this->barangJadiMasukModel->getBarangJadiMasuk(),
+            'barangJadi' => $this->barangJadiModel,
+            'jenisBarangJadi' => $this->jenisBarangJadiModel,
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/informasiBarangJadi');
-        echo view('Layout/footer');
+
+        return view('Inventory/informasiBarangJadi', $data);
     }
 
-    public function inputBarangJadi()
+    public function inputBarangJadi($idBarangJadi = false)
     {
+        if (!empty($idBarangJadi)) {
+
+            dd($this->barangJadiModel->getBarangJadi(($idBarangJadi)));
+            $barangJadi = $this->barangJadiModel->getBarangJadi($idBarangJadi);
+            $idJenisBarangJadi = $this->barangJadiModel->getBarangJadi(($idBarangJadi))['id_jenis_barang_jadi'];
+            $jenisBarangJadi = $this->jenisBarangJadiModel->getJenisBarangJadi($idJenisBarangJadi);
+        } else {
+            $barangJadi = $this->barangJadiModel->getBarangJadi();
+            $jenisBarangJadi = $this->jenisBarangJadiModel->getJenisBarangJadi();
+        }
+
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Inventory',
+            'idBarangJadi' => $idBarangJadi,
+            'barangJadiTertentu' => $barangJadi,
+            'barangJadi' => $this->barangJadiModel->getBarangJadi(),
+            'jenisBarangJadiTertentu' => $jenisBarangJadi,
+            'jenisBarangJadi' => $this->jenisBarangJadiModel->getJenisBarangJadi(),
+            'validation' => $this->validation
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/inputBarangJadi');
-        echo view('Layout/footer');
+        return view('Inventory/inputBarangJadi', $data);
+    }
+
+    public function tambahJenisInputBarangJadi($jenisBarangJadi)
+    {
+        # code...
+        if (!$this->validate([
+
+            'jenis_barang_jadi' => [
+                'rules' => 'required|max_length[20]',
+                'errors' => [
+                    'required' => 'Nama bahan baku harus diisi',
+                    'max_length' => 'Nama bahan baku tidak boleh lebih dari 20 karakter'
+                ]
+            ]
+        ])) {
+            return redirect()->to('/input-barang-jadi-produksi')->withInput()->with('validation', $this->validation->getErrors());
+        }
+
+        $idJenisBarangJadi = '';
+
+        foreach ($this->jenisBarangJadiModel->getBarangJadi() as $b) {
+            if ($this->request->getPost('jenis_barang_jadi') == $b['jenis_barang_jadi']) {
+                $idJenisBarangJadi = $b['id_jenis_barang_jadi'];
+            }
+        }
+
+
+        $data = [
+            'id_jenis_barang_jadi' => $idJenisBarangJadi,
+            'jenis_barang_jadi' => $jenisBarangJadi,
+            'alert' => 'Data berhasil ditambah/diubah'
+        ];
+
+
+        $this->jenisBarangJadiModel->save($data);
+
+        session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');
+
+        return redirect()->back();
+    }
+
+    public function submitInputBarangJadi()
+    {
+        # code...
+        // validasi input
+
+        if (!$this->validate([
+            'nama_barang_jadi' => [
+                'rules' => 'required|max_length[20]',
+                'errors' => [
+                    'required' => 'Nama bahan baku harus diisi',
+                    'max_length' => 'Nama bahan baku tidak boleh lebih dari 20 karakter'
+                ]
+            ]
+        ])) {
+            return redirect()->to('/input-barang-jadi-inventory')->withInput()->with('validation', $this->validation->getErrors());
+        }
+
+        foreach ($this->barangJadiModel->getBarangJadi() as $b) {
+            if ($b['nama_barang_jadi'] == $this->request->getPost('nama_barang_jadi')) {
+                $idBarangJadi = $b['id_barang_jadi'];
+            }
+        };
+
+        $data = [
+            'id_barang_jadi' => $idBarangJadi,
+            'nama_barang_jadi' => $this->request->getPost('nama_barang_jadi'),
+            'id_jenis_barang_jadi' => $this->request->getPost('id_jenis_barang_jadi'),
+            'kuantitas' => $this->request->getPost('stock_barang_jadi'),
+            'tgl_barang_jadi_masuk' => $this->myTime,
+            'alert' => 'Data berhasil ditambah/diubah'
+        ];
+
+        if (empty($data['id_barang_jadi'])) {
+            $this->barangJadiModel->save($data);
+            $data['id_barang_jadi'] = $this->barangJadiModel->find($data['nama_barang_jadi']);
+        }
+
+        $this->barangJadiMasukModel->save($data);
+
+        session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');
+
+        return redirect()->to('/informasi-barang-jadi-inventory');
+    }
+
+    public function deleteInformasiBarangJadiMasuk($idBarangJadiMasuk)
+    {
+        # code...
+        $data = [
+            'title' => 'Inventory',
+            'alert' => 'Data berhasil dihapus'
+        ];
+
+        $this->barangJadiMasukModel->delete($idBarangJadiMasuk);
+
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+
+        return redirect()->to('/informasi-barang-jadi-inventory');
     }
 
     public function requestPembelianBahanBaku()
