@@ -1,7 +1,3 @@
-<?= $this->extend('Layout/template'); ?>
-
-<?= $this->section('content'); ?>
-
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -30,11 +26,10 @@
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
                                     <tr>
-                                        <th>Id Pesanan</th>
-                                        <th>Tanggal Pesanan</th>
-                                        <th>Nama Barang</th>
-                                        <th>Jumlah Barang</th>
-                                        <th>Status</th>
+                                        <th>No.</th>
+                                        <th>Nama Bahan Baku</th>
+                                        <th>Stok</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,5 +78,3 @@
     </div>
     <!-- #/ container -->
 </div>
-
-<?= $this->endSection(); ?>
