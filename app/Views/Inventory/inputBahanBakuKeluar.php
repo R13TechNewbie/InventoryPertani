@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -17,26 +21,80 @@
                     <div class="card-body">
                         <h4 class="card-title">Input Bahan Baku Keluar</h4>
                         <div class="form-validation">
-                            <form class="form-valide" action="#" method="post">
-                                <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-skill">Nama Bahan Baku<span class="text-danger">*</span>
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <select class="form-control" id="val-skill" name="val-skill">
-                                            <option value="">Please select</option>
-                                            <option value="BerasPertani1KG">Beras 1KG</option>
-                                            <option value="BerasPertani5KG">Beras 5KG</option>
-                                            <option value="BibitPertani">Bibit Tomat</option>
-                                        </select>
+                            <form class="form-valide" action="/input-bahan-baku-keluar/submit" method="post">
+                                <?php if (empty($idBahanBakuKeluar)) : ?>
+                                    <input type="hidden" class="form-control" id="id_req_bahan_baku" name="id_req_bahan_baku" value="<?= $idReqBahanBaku; ?>" readonly="true">
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="nama_bahan_baku">Nama Bahan Baku<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" id="nama_bahan_baku" name="nama_bahan_baku" value="<?= $namaBahanBaku; ?>" readonly="true">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-digits">Jumlah <span class="text-danger">*</span>
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input type="number" class="form-control" id="val-digits" name="val-digits" placeholder="5">
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="kuantitas">Kuantitas<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="number" class="form-control" id="kuantitas" name="kuantitas" value="<?= $kuantitas; ?>" readonly="true">
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="id_bahan_baku">Id Bahan Baku<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="number" class="form-control" id="id_bahan_baku" name="id_bahan_baku" value="<?= $idBahanBaku; ?>" readonly="true">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="status">Status<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <select class="form-control" id="status" name="status">
+                                                <option value="Diproses">Diproses</option>
+                                                <option value="Terkirim">Terkirim</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                <?php else : ?>
+                                    <input type="hidden" class="form-control" id="id_bahan_baku_keluar" name="id_bahan_baku_keluar" value="<?= $idBahanBakuKeluar; ?>" readonly="true">
+                                    <input type="hidden" class="form-control" id="id_req_bahan_baku" name="id_req_bahan_baku" value="<?= $idReqBahanBaku; ?>" readonly="true">
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="nama_bahan_baku">Nama Bahan Baku<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" id="nama_bahan_baku" name="nama_bahan_baku" value="<?= $namaBahanBaku; ?>" readonly="true">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="kuantitas">Kuantitas<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="number" class="form-control" id="kuantitas" name="kuantitas" value="<?= $kuantitas; ?>" readonly="true">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="id_bahan_baku">Id Bahan Baku<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="number" class="form-control" id="id_bahan_baku" name="id_bahan_baku" value="<?= $idBahanBaku; ?>" readonly="true">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="status">Status<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <select class="form-control" id="status" name="status">
+                                                <?php if ($status == 'Diproses') : ?>
+                                                    <option value="Diproses" selected>Diproses</option>
+                                                    <option value="Terkirim">Terkirim</option>
+                                                <?php else : ?>
+                                                    <option value="Diproses">Diproses</option>
+                                                    <option value="Terkirim" selected>Terkirim</option>
+                                                <?php endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
                                 <div class="form-group row">
                                     <div class="col-lg-8 ml-auto">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -52,3 +110,5 @@
     </div>
     <!-- #/ container -->
 </div>
+
+<?= $this->endSection(); ?>

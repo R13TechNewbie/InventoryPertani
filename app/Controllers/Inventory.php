@@ -3,12 +3,14 @@
 namespace App\Controllers;
 
 use App\Database\Migrations\JenisBahanBaku;
+use App\Models\BahanBakuKeluarModel;
 use Config\View;
 
 use App\Models\BahanBakuModel;
 use App\Models\BarangJadiKeluarModel;
 use App\Models\BarangJadiModel;
 use App\Models\JenisBahanBakuModel;
+use App\Models\RequestBahanBakuModel;
 use App\Models\RequestBarangJadiKeluarModel;
 use CodeIgniter\I18n\Time;
 use PhpParser\Node\Stmt\Echo_;
@@ -21,6 +23,8 @@ class Inventory extends BaseController
     protected $requestBarangJadiKeluarModel;
     protected $barangJadiModel;
     protected $barangJadiKeluarModel;
+    protected $requestBahanBakuModel;
+    protected $bahanBakuKeluarModel;
 
     public function __construct()
     {
@@ -31,6 +35,8 @@ class Inventory extends BaseController
         $this->barangJadiKeluarModel = new BarangJadiKeluarModel();
         $this->validation = \Config\Services::validation();
         $this->myTime = new Time('now', 'Asia/Jakarta', 'id_ID');
+        $this->requestBahanBakuModel = new RequestBahanBakuModel();
+        $this->bahanBakuKeluarModel = new BahanBakuKeluarModel();
     }
 
     public function index()
@@ -148,23 +154,56 @@ class Inventory extends BaseController
     public function informasiBahanBakuKeluar()
     {
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Inventory',
+            'requestBahanBaku' => $this->requestBahanBakuModel->getRequestBahanBaku(),
+            'bahanBaku' => $this->bahanBakuModel,
+            'bahanBakuKeluar' => $this->bahanBakuKeluarModel->getBahanBakuKeluar(),
+            'reqBahanBakuTertentu' => $this->requestBahanBakuModel,
+            'bahanBakuKeluarTertentu' => $this->bahanBakuKeluarModel,
+
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/informasiBahanBakuKeluar');
-        echo view('Layout/footer');
+        return view('Inventory/informasiBahanBakuKeluar', $data);
     }
 
-    public function inputBahanBakuKeluar()
+    public function inputBahanBakuKeluar($idReqBahanBaku = false, $idBahanBakuKeluar = false)
     {
+        if (!empty($idBahanBakuKeluar)) {
+            $status = $this->bahanBakuKeluarModel->find($idBahanBakuKeluar)['status'];
+        } else {
+            $status = '';
+        }
+
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Inventory',
+            'idReqBahanBaku' => $idReqBahanBaku,
+            'idBahanBakuKeluar' => $idBahanBakuKeluar,
+            'namaBahanBaku' => $this->bahanBakuModel->find($this->requestBahanBakuModel->find($idReqBahanBaku))[0]['nama_bahan_baku'],
+            'kuantitas' => $this->requestBahanBakuModel->find($idReqBahanBaku)['kuantitas'],
+            'idBahanBaku' => $this->bahanBakuModel->find($this->requestBahanBakuModel->find($idReqBahanBaku))[0]['id_bahan_baku'],
+            'tglRequest' => $this->requestBahanBakuModel->find($idReqBahanBaku)['tgl_request'],
+            'status' => $status
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/inputBahanBakuKeluar');
-        echo view('Layout/footer');
+        echo view('Inventory/inputBahanBakuKeluar', $data);
+    }
+
+    public function submitBahanBakuKeluar()
+    {
+        # code...
+        $data = [
+            'id_bahan_baku_keluar' => $this->request->getPost('id_bahan_baku_keluar'),
+            'id_req_bahan_baku' => $this->request->getPost('id_req_bahan_baku'),
+            'tgl_barang_baku_keluar' => $this->myTime,
+            'status' => $this->request->getPost('status'),
+            'alert' => 'Data berhasil ditambah/diubah'
+        ];
+
+        $this->bahanBakuKeluarModel->save($data);
+
+        session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');
+
+        return redirect()->to('/informasi-bahan-baku-keluar');
     }
 
     public function informasiBarangJadi()

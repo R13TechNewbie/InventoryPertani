@@ -25,6 +25,7 @@ class BahanBakuKeluarModel extends Model
 
     protected $useTimestamps = true;
     protected $createdField = 'tgl_bahan_baku_keluar';
+    protected $updatedField = 'tgl_bahan_baku_keluar';
     protected $dateFormat = 'date';
 
     // protected $returnType     = 'array';
