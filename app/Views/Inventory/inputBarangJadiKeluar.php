@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -17,30 +21,84 @@
                     <div class="card-body">
                         <h4 class="card-title">Input Barang Jadi Keluar</h4>
                         <div class="form-validation">
-                            <form class="form-valide" action="#" method="post">
-                                <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-skill">Nama Barang Jadi<span class="text-danger">*</span>
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <select class="form-control" id="val-skill" name="val-skill">
-                                            <option value="">Please select</option>
-                                            <option value="BerasPertani1KG">Beras Pertani 1KG</option>
-                                            <option value="BerasPertani5KG">Beras Pertani 5KG</option>
-                                            <option value="BibitPertani">Bibit Tomat Pertani</option>
-                                        </select>
+                            <form class="form-valide" action="/input-barang-jadi-keluar/submit" method="post">
+                                <?php if (empty($idBarangJadiKeluar)) : ?>
+                                    <div class="form-group row">
+                                        <input type="hidden" class="form-control" id="id_req_barang_jadi_keluar" name="id_req_barang_jadi_keluar" value="<?= $idReqBarangJadiKeluar; ?>" readonly="true">
+                                        <label class="col-lg-4 col-form-label" for="nama_barang_jadi">Nama Barang Jadi<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" id="nama_barang_jadi" name="nama_barang_jadi" value="<?= $namaBarangJadi; ?>" readonly="true">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-digits">Jumlah <span class="text-danger">*</span>
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input type="number" class="form-control" id="val-digits" name="val-digits" placeholder="5">
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="kuantitas">Kuantitas<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="number" class="form-control" id="kuantitas" name="kuantitas" value="<?= $kuantitas; ?>" readonly="true">
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="id_barang_jadi">Id. Produk<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="number" class="form-control" id="id_barang_jadi" name="id_barang_jadi" value="<?= $idBarangJadi; ?>" readonly="true">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="status">Status<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <select class="form-control" id="status" name="status">
+                                                <option value="Diproses">Diproses</option>
+                                                <option value="Terkirim">Terkirim</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                <?php else : ?>
+                                    <input type="hidden" class="form-control" id="id_barang_jadi_keluar" name="id_barang_jadi_keluar" value="<?= $idBarangJadiKeluar; ?>" readonly="true">
+                                    <input type="hidden" class="form-control" id="id_req_barang_jadi_keluar" name="id_req_barang_jadi_keluar" value="<?= $idReqBarangJadiKeluar; ?>" readonly="true">
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="nama_barang_jadi">Nama Barang Jadi<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="number" class="form-control" id="nama_barang_jadi" name="nama_barang_jadi" value="<?= $namaBarangJadi; ?>" readonly="true">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="kuantitas">Kuantitas<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="number" class="form-control" id="kuantitas" name="kuantitas" value="<?= $kuantitas; ?>" readonly="true">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="id_barang_jadi">Id. Produk<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="number" class="form-control" id="id_barang_jadi" name="id_barang_jadi" value="<?= $idBarangJadi; ?>" readonly="true">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="status">Status<span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <select class="form-control" id="status" name="status">
+                                                <?php if ($status == 'Diproses') : ?>
+                                                    <option value="Diproses" selected>Diproses</option>
+                                                    <option value="Terkirim">Terkirim</option>
+                                                <?php else : ?>
+                                                    <option value="Diproses">Diproses</option>
+                                                    <option value="Terkirim" selected>Terkirim</option>
+                                                <?php endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
                                 <div class="form-group row">
                                     <div class="col-lg-8 ml-auto">
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        <a href="/informasi-barang-jadi-keluar"><button type="button" class="btn btn-danger">Cancel</button></a>
+                                        <a href="/request-barang-jadi-keluar"><button type="button" class="btn btn-danger">Cancel</button></a>
                                     </div>
                                 </div>
                             </form>
@@ -52,3 +110,4 @@
     </div>
     <!-- #/ container -->
 </div>
+<?= $this->endSection(); ?>

@@ -6,7 +6,11 @@ use App\Database\Migrations\JenisBahanBaku;
 use Config\View;
 
 use App\Models\BahanBakuModel;
+use App\Models\BarangJadiKeluarModel;
+use App\Models\BarangJadiModel;
 use App\Models\JenisBahanBakuModel;
+use App\Models\RequestBarangJadiKeluarModel;
+use CodeIgniter\I18n\Time;
 use PhpParser\Node\Stmt\Echo_;
 
 class Inventory extends BaseController
@@ -14,12 +18,19 @@ class Inventory extends BaseController
     protected $bahanBakuModel;
     protected $jenisBahanBakuModel;
     protected $validation;
+    protected $requestBarangJadiKeluarModel;
+    protected $barangJadiModel;
+    protected $barangJadiKeluarModel;
 
     public function __construct()
     {
         $this->bahanBakuModel = new BahanBakuModel();
         $this->jenisBahanBakuModel = new JenisBahanBakuModel();
+        $this->requestBarangJadiKeluarModel = new RequestBarangJadiKeluarModel();
+        $this->barangJadiModel = new BarangJadiModel();
+        $this->barangJadiKeluarModel = new BarangJadiKeluarModel();
         $this->validation = \Config\Services::validation();
+        $this->myTime = new Time('now', 'Asia/Jakarta', 'id_ID');
     }
 
     public function index()
@@ -47,23 +58,69 @@ class Inventory extends BaseController
     public function requestBarangJadiKeluar()
     {
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Inventory',
+            'requestBarangJadiKeluar' => $this->requestBarangJadiKeluarModel->getRequestBarangJadiKeluar(),
+            'requestBarangJadiKeluarTertentu' => $this->requestBarangJadiKeluarModel,
+            'barangJadi' => $this->barangJadiModel,
+            'barangJadiKeluar' => $this->barangJadiKeluarModel->getBarangJadiKeluar()
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/requestBarangJadiKeluar');
-        echo view('Layout/footer');
+        return view('Inventory/requestBarangJadiKeluar', $data);
     }
 
-    public function inputBarangJadiKeluar()
+    public function inputBarangJadiKeluar($idRequestBarangJadiKeluar = false, $idBarangJadiKeluar = false)
     {
+
+        if (!empty($idBarangJadiKeluar)) {
+            $status = $this->barangJadiKeluarModel->find($idBarangJadiKeluar)['status'];
+        } else {
+            $status = '';
+        }
+
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Inventory',
+            'idBarangJadiKeluar' => $idBarangJadiKeluar,
+            'idReqBarangJadiKeluar' => $idRequestBarangJadiKeluar,
+            'namaBarangJadi' => $this->barangJadiModel->find($this->requestBarangJadiKeluarModel->find($idRequestBarangJadiKeluar))[0]['nama_barang_jadi'],
+            'kuantitas' => $this->requestBarangJadiKeluarModel->find($idRequestBarangJadiKeluar)['kuantitas'],
+            'idBarangJadi' => $this->barangJadiModel->find($this->requestBarangJadiKeluarModel->find($idRequestBarangJadiKeluar))[0]['id_barang_jadi'],
+            'tglRequest' => $this->requestBarangJadiKeluarModel->find($idRequestBarangJadiKeluar)['tgl_request'],
+            'status' => $status
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/inputBarangJadiKeluar');
-        echo view('Layout/footer');
+        echo view('Inventory/inputBarangJadiKeluar', $data);
+    }
+
+    public function submitBarangJadiKeluar()
+    {
+        # code...
+        $data = [
+            'id_barang_jadi_keluar' => $this->request->getPost('id_barang_jadi_keluar'),
+            'id_req_barang_jadi_keluar' => $this->request->getPost('id_req_barang_jadi_keluar'),
+            'tgl_barang_keluar' => $this->myTime,
+            'status' => $this->request->getPost('status'),
+            'alert' => 'Data berhasil ditambah/diubah'
+        ];
+
+        $this->barangJadiKeluarModel->save($data);
+
+        session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');
+
+        return redirect()->to('/request-barang-jadi-keluar');
+    }
+
+    public function deleteBarangJadiKeluar($idBarangJadiKeluar)
+    {
+        $data = [
+            'title' => 'Inventory',
+            'alert' => 'Data berhasil dihapus'
+        ];
+
+        $this->barangJadiKeluarModel->delete($idBarangJadiKeluar);
+
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+
+        return redirect()->to('/request-barang-jadi-keluar');
     }
 
     public function stokBahanBaku()

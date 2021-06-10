@@ -48,7 +48,11 @@ $routes->group('', ['filter' => 'role:Inventory'], function ($routes) {
 	$routes->get('/inventory', 'Inventory::index');
 	$routes->get('/stok-barang-jadi-inventory', 'Inventory::stokBarangJadi');
 	$routes->get('/request-barang-jadi-keluar', 'Inventory::requestBarangJadiKeluar');
+	$routes->delete('/request-barang-jadi-keluar/delete/(:num)', 'Inventory::deleteBarangJadiKeluar/$1');
 	$routes->get('/input-barang-jadi-keluar', 'Inventory::inputBarangJadiKeluar');
+	$routes->post('/input-barang-jadi-keluar/submit', 'Inventory::submitBarangJadiKeluar');
+	$routes->get('/input-barang-jadi-keluar/(:num)', 'Inventory::inputBarangJadiKeluar/$1');
+	$routes->get('/input-barang-jadi-keluar/(:num)/(:num)', 'Inventory::inputBarangJadiKeluar/$1/$2');
 	$routes->get('/stok-bahan-baku', 'Inventory::stokBahanBaku');
 	$routes->get('/informasi-bahan-baku-keluar', 'Inventory::informasiBahanBakuKeluar');
 	$routes->get('/input-bahan-baku-keluar', 'Inventory::inputBahanBakuKeluar');

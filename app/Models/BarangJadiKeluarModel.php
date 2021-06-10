@@ -11,7 +11,7 @@ class BarangJadiKeluarModel extends Model
 
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['id_req_barang_jadi', 'tgl_barang_keluar', 'status'];
+    protected $allowedFields = ['id_req_barang_jadi_keluar', 'tgl_barang_keluar', 'status'];
 
     public function getBarangJadiKeluar($idBarangJadiKeluar = false)
     {
@@ -25,6 +25,7 @@ class BarangJadiKeluarModel extends Model
 
     protected $useTimestamps = true;
     protected $createdField = 'tgl_barang_keluar';
+    protected $updatedField = 'tgl_barang_keluar';
     protected $dateFormat = 'date';
 
     // protected $returnType     = 'array';
