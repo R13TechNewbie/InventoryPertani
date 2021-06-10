@@ -25,6 +25,7 @@ class RequestBarangJadiKeluarModel extends Model
 
     protected $useTimestamps = true;
     protected $createdField = 'tgl_request';
+    protected $updatedField = 'tgl_request';
     protected $dateFormat = 'date';
 
     // protected $returnType     = 'array';

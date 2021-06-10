@@ -24,11 +24,11 @@
                                     </div>
                                     <p class="mb-1">Lihat daftar barang yang tersedia di Stok Barang Jadi</p>
                                 </a>
-                                <a href="/request-barang-jadi" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <a href="/informasi-request-barang-jadi" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Request Barang Jadi</h5>
+                                        <h5 class="mb-1">Informasi Request Barang Jadi</h5>
                                     </div>
-                                    <p class="mb-1">Request barang untuk ditambahkan ke dalam Stok Barang Jadi</p>
+                                    <p class="mb-1">Lihat dan buat Request barang untuk ditambahkan ke dalam Stok Barang Jadi</p>
                                 </a>
                             </div>
                         </div>

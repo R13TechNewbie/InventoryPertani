@@ -65,7 +65,6 @@
                                     </div>
                                 <?php else : ?>
                                     <div class="form-group row">
-
                                         <input type="hidden" class="form-control" id="id_bahan_baku" name="id_bahan_baku" placeholder="Bibit Semangka 500gr" value="<?= $bahanBakuTertentu['id_bahan_baku']; ?>">
                                         <label class="col-lg-4 col-form-label" for="val-items">Nama Bahan Baku<span class="text-danger">*</span>
                                         </label>
@@ -81,7 +80,6 @@
                                         </label>
                                         <div class="col-lg-6">
                                             <select class="form-control" id="id_jenis_bahan_baku" name="id_jenis_bahan_baku" autofocus>
-                                                <!-- <option value="<?= $bahanBakuTertentu['id_jenis_bahan_baku'] ?>"><?= $jenisBahanBakuTertentu['jenis_bahan_baku']; ?></option> -->
                                                 <?php foreach ($jenisBahanBaku as $b) : ?>
                                                     <?php if (!empty(old('id_jenis_bahan_baku'))) : ?>
                                                         <?php if ($b['id_jenis_bahan_baku'] == old('id_jenis_bahan_baku')) : ?>

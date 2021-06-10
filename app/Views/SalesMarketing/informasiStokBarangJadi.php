@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -48,3 +52,4 @@
     </div>
     <!-- #/ container -->
 </div>
+<?= $this->endSection(); ?>

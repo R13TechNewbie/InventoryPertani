@@ -72,7 +72,11 @@ $routes->group('', ['filter' => 'role:SalesMarketing'], function ($routes) {
 	$routes->get('/sales-marketing', 'SalesMarketing::index');
 	$routes->get('/stok-barang-jadi-sales-marketing', 'SalesMarketing::stokBarangJadi');
 	$routes->get('/informasi-barang-jadi-sales-marketing', 'SalesMarketing::informasiStokBarangJadi');
+	$routes->delete('/informasi-request-barang-jadi/delete/(:num)', 'SalesMarketing::deleteRequestBarangJadi/$1');
+	$routes->get('/informasi-request-barang-jadi', 'SalesMarketing::informasiRequestBarangJadi');
 	$routes->get('/request-barang-jadi', 'SalesMarketing::requestBarangJadi');
+	$routes->post('/request-barang-jadi/submit', 'SalesMarketing::submitRequestBarangJadi');
+	$routes->get('/request-barang-jadi/(:num)', 'SalesMarketing::requestBarangJadi/$1');
 	$routes->get('/stok-barang-jadi-keluar', 'SalesMarketing::stokBarangJadiKeluar');
 });
 
