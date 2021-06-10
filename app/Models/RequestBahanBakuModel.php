@@ -11,7 +11,7 @@ class RequestBahanBakuModel extends Model
 
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['id_bahan_baku', 'kuantitas', 'tgl_request'];
+    protected $allowedFields = ['id_bahan_baku', 'kuantitas', 'tgl_request', 'status'];
 
     public function getRequestBahanBaku($idRequestBahanBaku = false)
     {
@@ -25,6 +25,7 @@ class RequestBahanBakuModel extends Model
 
     protected $useTimestamps = true;
     protected $createdField = 'tgl_request';
+    protected $updatedField = 'tgl_request';
     protected $dateFormat = 'date';
 
     // protected $returnType     = 'array';

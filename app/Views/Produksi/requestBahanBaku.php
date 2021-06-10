@@ -50,7 +50,7 @@
                                         </div>
                                     </div>
                                 <?php else : ?>
-                                    <input type="hidden" class="form-control" id="id_req_bahan_baku" name="id_req_bahan_baku" placeholder="Bibit Semangka 500gr" value="<?= $reqBahanBakuTertentu['id_req_bahan_baku']; ?>">
+                                    <input type="hidden" class="form-control" id="id_req_bahan_baku" name="id_req_bahan_baku" placeholder="Bibit Semangka 500gr" value="<?= $idReqBahanBaku; ?>">
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="nama_bahan_baku">Nama Bahan Baku<span class="text-danger">*</span>
                                         </label>
@@ -80,14 +80,14 @@
                                         <label class="col-lg-4 col-form-label" for="val-digits">Jumlah Pesanan<span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="number" class="form-control" id="stock_bahan_baku" name="stock_bahan_baku" placeholder="5" value="<?= (old('kuantitas') == '') ? $reqBahanBaku['kuantitas'] : old('kuantitas'); ?>">
+                                            <input type="number" class="form-control" id="kuantitas" name="kuantitas" placeholder="5" value="<?= (old('kuantitas') == '') ? $reqBahanBaku->find($idReqBahanBaku)['kuantitas'] : old('kuantitas'); ?>">
                                         </div>
                                     </div>
                                 <?php endif; ?>
                                 <div class="form-group row">
                                     <div class="col-lg-8 ml-auto">
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        <a href="/"><button type="button" class="btn btn-danger">Cancel</button></a>
+                                        <a href="/informasi-request-bahan-baku"><button type="button" class="btn btn-danger">Cancel</button></a>
                                     </div>
                                 </div>
                             </form>
@@ -103,7 +103,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <label class="col-form-label">Silakan masukkan nama bahan baku baru ke isian dibawah ini : </label>
-                                                <input class="col-lg-11" type="text" id="tambahBahanBaku" name="tambahBahanBaku" placeholder="Gabah 1 Kg">
+                                                <input class="col-lg-11" type="text" id="nama_bahan_baku" name="nama_bahan_baku" placeholder="Gabah 1 Kg">
                                                 <label class="col-form-label">Pilih jenis bahan baku</label>
                                                 <select class="col-lg-11 form-control" id="id_jenis_bahan_baku" name="id_jenis_bahan_baku">
                                                     <?php foreach ($jenisBahanBaku as $b) : ?>
