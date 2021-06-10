@@ -67,7 +67,7 @@ class SalesMarketing extends BaseController
     {
         if (!empty($idReqBarangJadiKeluar)) {
             $reqBarangJadiKeluar = $this->RequestBarangJadiKeluarModel->getRequestBarangJadiKeluar($idReqBarangJadiKeluar);
-            $idBarangJadi = $this->RequestBarangJadiKeluarModel->getRequestBarangJadiKeluar($idReqBarangJadiKeluar)['id_bahan_baku'];
+            $idBarangJadi = $this->RequestBarangJadiKeluarModel->getRequestBarangJadiKeluar($idReqBarangJadiKeluar)['id_barang_jadi'];
             $barangJadi = $this->BarangJadiModel->getBarangJadi($idBarangJadi);
         } else {
             $reqBarangJadiKeluar = $this->RequestBarangJadiKeluarModel->getRequestBarangJadiKeluar();

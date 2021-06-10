@@ -38,7 +38,7 @@
                                             <td><?= $b['nama_barang_jadi']; ?></td>
                                             <td><?= $b['stock_barang_jadi']; ?></td>
                                             <td>
-                                                <a href="/request-barang-jadi/<?= $b['id_barang_jadi']; ?>"><button class="btn btn-success"><i class="fa fa-plus fa-change-to-white"></i></button></a>
+                                                <a href="/request-barang-jadi"><button class="btn btn-success"><i class="fa fa-plus fa-change-to-white"></i></button></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

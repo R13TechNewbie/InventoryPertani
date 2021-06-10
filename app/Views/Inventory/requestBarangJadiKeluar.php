@@ -67,6 +67,7 @@
                                         <th>Id. Produk</th>
                                         <th>Tgl Barang Keluar</th>
                                         <th>Status</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
