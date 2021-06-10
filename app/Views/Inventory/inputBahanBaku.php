@@ -53,7 +53,7 @@
                                             </select>
                                         </div>
                                         <div class="col-lg-2">
-                                            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#tambahJenisBahanBakuModal"><i class="fa fa-plus"></i></button>
+                                            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#tambahJenisBahanBakuModal"><i class="fa fa-plus fa-change-to-white"></i></button>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -99,7 +99,7 @@
                                             </select>
                                         </div>
                                         <div class="col-lg-2">
-                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#tambahJenisBahanBakuModal"><i class="fa fa-plus"></i></button>
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#tambahJenisBahanBakuModal"><i class="fa fa-plus fa-change-to-white"></i></button>
                                         </div>
                                     </div>
                                     <div class="form-group row">
