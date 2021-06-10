@@ -35,7 +35,7 @@
                                         <td>Rp.260.000</td>
                                         <td>15 Maret 2021</td>
                                         <td>
-                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-informasi-1"><i class="fa fa-info"></i></button>
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-informasi-1"><i class="fa fa-info fa-change-to-white"></i></button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -44,7 +44,7 @@
                                         <td>Rp.150.000</td>
                                         <td>27 Maret 2021</td>
                                         <td>
-                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-informasi-2"><i class="fa fa-info"></i></button>
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-informasi-2"><i class="fa fa-info fa-change-to-white"></i></button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -53,7 +53,7 @@
                                         <td>Rp.95.000</td>
                                         <td>31 Maret 2021</td>
                                         <td>
-                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-informasi-3"><i class="fa fa-info"></i></button>
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-informasi-3"><i class="fa fa-info fa-change-to-white"></i></button>
                                             <!-- modal -->
 
                                         </td>

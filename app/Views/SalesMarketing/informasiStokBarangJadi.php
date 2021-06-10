@@ -15,32 +15,29 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Stok Barang Jadi</h4>
+                        <h4 class="card-title">Informasi Barang Jadi</h4>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>No. </th>
                                         <th>Nama Barang Jadi</th>
-                                        <th>Jumlah</th>
+                                        <th>Stok</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Beras Pertani 1 KG</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Beras Pertani 5 KG</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Bibit Tomat Pertani</td>
-                                        <td>7</td>
-                                    </tr>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($barangJadi as $b) : ?>
+                                        <tr>
+                                            <th><?= $i++; ?></th>
+                                            <td><?= $b['nama_barang_jadi']; ?></td>
+                                            <td><?= $b['stock_barang_jadi']; ?></td>
+                                            <td>
+                                                <a href="/request-barang-jadi/<?= $b['id_barang_jadi']; ?>"><button class="btn btn-success"><i class="fa fa-plus fa-change-to-white"></i></button></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

@@ -20,15 +20,15 @@
                             <div class="list-group">
                                 <a href="/informasi-barang-jadi-inventory" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Input Barang Jadi</h5>
+                                        <h5 class="mb-1">Informasi Barang Jadi</h5>
                                     </div>
-                                    <p class="mb-1">Input barang jadi ke Stok Barang Jadi</p>
+                                    <p class="mb-1">Lihat stok barang jadi di Inventory</p>
                                 </a>
                                 <a href="/request-barang-jadi-keluar" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">Request Barang Jadi Keluar</h5>
                                     </div>
-                                    <p class="mb-1">Lihat dan proses daftar request barang jadi keluar untuk memproses permintaan barang jadi dari Sales & Marketing</p>
+                                    <p class="mb-1">Lihat dan pesan request barang jadi keluar ke Inventory</p>
                                 </a>
                             </div>
                         </div>

@@ -2,10 +2,21 @@
 
 namespace App\Controllers;
 
+use App\Models\BarangJadiMasukModel;
+use App\Models\BarangJadiModel;
 use Config\View;
 
 class SalesMarketing extends BaseController
 {
+    protected $BarangJadiModel;
+    protected $BarangJadiMasukModel;
+
+    public function __construct()
+    {
+        $this->BarangJadiModel = new BarangJadiModel();
+        $this->BarangJadiMasukModel = new BarangJadiMasukModel();
+    }
+
     public function index()
     {
         $data = [
@@ -31,7 +42,8 @@ class SalesMarketing extends BaseController
     public function informasiStokBarangJadi()
     {
         $data = [
-            'title' => 'Sales & Marketing'
+            'title' => 'Sales & Marketing',
+            'barangJadi' => $this->BarangJadiModel->getBarangJadi()
         ];
 
         echo view('Layout/header', $data);

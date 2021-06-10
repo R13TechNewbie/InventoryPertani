@@ -40,7 +40,7 @@
                                             <td><?= $b['nama_bahan_baku']; ?></td>
                                             <td><?= $b['stock_bahan_baku']; ?></td>
                                             <td>
-                                                <a href="/input-bahan-baku/<?= $b['id_bahan_baku']; ?>"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                                <a href="/input-bahan-baku/<?= $b['id_bahan_baku']; ?>"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
                                                 <a href="#"><button class="btn btn-danger" data-toggle="modal" data-target="#ModalHapus"><i class="fa fa-trash"></i></button></a>
                                             </td>
                                         </tr>

@@ -15,7 +15,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Input Barang Jadi</h4>
+                        <h4 class="card-title">Informasi Barang Jadi</h4>
                         <a href="/input-barang-jadi-inventory"><button type="button" class="btn mb-1 btn-primary mt-2" style="width: 100%;">Input Barang Jadi</button></a>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
@@ -37,7 +37,7 @@
                                         <td>3</td>
                                         <td>27 Januari 2021</td>
                                         <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
                                             <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
                                         </td>
                                     </tr>
@@ -48,7 +48,7 @@
                                         <td>5</td>
                                         <td>27 Februari 2021</td>
                                         <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
                                             <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
                                         </td>
                                     </tr>
@@ -59,7 +59,7 @@
                                         <td>7</td>
                                         <td>27 Maret 2021</td>
                                         <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
                                             <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
                                         </td>
                                     </tr>

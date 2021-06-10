@@ -21413,18 +21413,6 @@ html[dir="rtl"]
 
 /* Custom CSS by Rama */
 
-.fa-pencil {
-  color: white;
-}
-
-.fa-search {
-  color: white;
-}
-
-.fa-info-circle {
-  color: white;
-}
-
-.fa-info {
+.fa-change-to-white {
   color: white;
 }

@@ -73,7 +73,7 @@
                                         <td>5</td>
                                         <td>terkirim</td>
                                         <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
                                             <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
                                         </td>
                                     </tr>
@@ -84,7 +84,7 @@
                                         <td>5</td>
                                         <td>terkirim</td>
                                         <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
                                             <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
                                         </td>
                                     </tr>
@@ -95,7 +95,7 @@
                                         <td>5</td>
                                         <td>diproses</td>
                                         <td>
-                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a>
+                                            <a href="#"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
                                             <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
                                         </td>
                                     </tr>
