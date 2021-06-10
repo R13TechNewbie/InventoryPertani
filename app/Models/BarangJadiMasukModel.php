@@ -4,27 +4,27 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class BahanBakuKeluarModel extends Model
+class BarangJadiMasukModel extends Model
 {
-    protected $table      = 'bahan_baku_keluar';
-    protected $primaryKey = 'id_bahan_baku_keluar';
+    protected $table      = 'barang_jadi_masuk';
+    protected $primaryKey = 'id_barang_jadi_masuk';
 
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['id_req_bahan_baku', 'tgl_bahan_baku_keluar', 'status'];
+    protected $allowedFields = ['id_barang_jadi', 'id_po', 'kuantitas', 'tgl_barang_jadi_masuk'];
 
-    public function getBahanBakuKeluar($idBahanBakuKeluar = false)
+    public function getBarangJadiMasuk($idBarangJadiMasuk = false)
     {
-        if ($idBahanBakuKeluar == false) {
+        if ($idBarangJadiMasuk == false) {
             return $this->findAll();
         }
 
 
-        return $this->where(['id_bahan_baku_keluar' => $idBahanBakuKeluar])->first();
+        return $this->where(['id_barang_jadi_masuk' => $idBarangJadiMasuk])->first();
     }
 
     protected $useTimestamps = true;
-    protected $createdField = 'tgl_bahan_baku_keluar';
+    protected $createdField = 'tgl_barang_jadi_masuk';
     protected $dateFormat = 'date';
 
     // protected $returnType     = 'array';

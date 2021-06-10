@@ -11,7 +11,6 @@ class SupplierSeeder extends Seeder
 		//
 		$data = [
 			[
-				'id_supplier'   	=> 1,
 				'id_user'    		=> 5,
 				'nama_supplier' 	=> 'Retno Supraja',
 				'alamat_supplier' 	=> 'Jl. Teuku Umar No.23 ,DKI Jakarta',
