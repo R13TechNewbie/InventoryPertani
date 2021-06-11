@@ -10,10 +10,13 @@ use App\Models\BahanBakuModel;
 use App\Models\BarangJadiKeluarModel;
 use App\Models\BarangJadiMasukModel;
 use App\Models\BarangJadiModel;
+use App\Models\BarangModel;
 use App\Models\JenisBahanBakuModel;
 use App\Models\JenisBarangJadiModel;
+use App\Models\PurchaseOrderModel;
 use App\Models\RequestBahanBakuModel;
 use App\Models\RequestBarangJadiKeluarModel;
+use App\Models\SupplierModel;
 use CodeIgniter\I18n\Time;
 use PhpParser\Node\Stmt\Echo_;
 
@@ -29,6 +32,9 @@ class Inventory extends BaseController
     protected $bahanBakuKeluarModel;
     protected $barangJadiMasukModel;
     protected $jenisBarangJadiModel;
+    protected $PurchaseOrderModel;
+    protected $supplierModel;
+    protected $barangModel;
 
     public function __construct()
     {
@@ -43,6 +49,9 @@ class Inventory extends BaseController
         $this->bahanBakuKeluarModel = new BahanBakuKeluarModel();
         $this->barangJadiMasukModel = new BarangJadiMasukModel();
         $this->jenisBarangJadiModel = new JenisBarangJadiModel();
+        $this->PurchaseOrderModel = new PurchaseOrderModel();
+        $this->supplierModel = new SupplierModel();
+        $this->barangModel = new BarangModel();
     }
 
     public function index()
@@ -352,34 +361,65 @@ class Inventory extends BaseController
     public function requestPembelianBahanBaku()
     {
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Inventory',
+            'bahanBaku' => $this->bahanBakuModel,
+            'reqBahanBaku' => $this->requestBahanBakuModel->getRequestBahanBaku(),
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/requestPembelianBahanBaku');
-        echo view('Layout/footer');
+        return view('Inventory/requestPembelianBahanBaku', $data);
     }
 
-    public function inputRequestPembelianBahanBaku()
+    public function inputRequestPembelianBahanBaku($idReqBahanBaku = false)
     {
+        if (!empty($idReqBahanBaku)) {
+            $idBahanBaku = $this->requestBahanBakuModel->getRequestBahanBaku(($idReqBahanBaku))['id_bahan_baku'];
+            $bahanBakuTertentu = $this->bahanBakuModel->find($idBahanBaku);
+        } else {
+            $bahanBakuTertentu = $this->bahanBakuModel->getBahanBaku();
+        }
+
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Produksi',
+            'idReqBahanBaku' => $idReqBahanBaku,
+            'reqBahanBaku' => $this->requestBahanBakuModel,
+            'bahanBaku' => $this->bahanBakuModel->getBahanBaku(),
+            'bahanBakuTertentu' => $bahanBakuTertentu,
+            'jenisBahanBaku' => $this->jenisBahanBakuModel->getJenisBahanBaku()
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/inputRequestPembelianBahanBaku');
-        echo view('Layout/footer');
+        return view('Inventory/inputRequestPembelianBahanBaku', $data);
+    }
+
+    public function submitInputRequestPembelianBahanBaku()
+    {
+        # code...
+        $data = [
+            'id_req_bahan_baku' => $this->request->getPost('id_req_bahan_baku'),
+            'id_bahan_baku' => $this->request->getPost('id_bahan_baku'),
+            'kuantitas' => $this->request->getPost('kuantitas'),
+            'tgl_request' => $this->myTime,
+            'status' => "Menunggu",
+            'alert' => 'Data berhasil ditambah/diubah'
+        ];
+
+        $this->requestBahanBakuModel->save($data);
+
+        session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');
+
+        return redirect()->to('/request-pembelian-bahan-baku');
     }
 
     public function purchaseOrder()
     {
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Inventory',
+            'purchaseOrder' => $this->PurchaseOrderModel->findAll(),
+            'supplier' => $this->supplierModel,
+            'barang' => $this->barangModel,
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/purchaseOrder');
-        echo view('Layout/footer');
+
+        return view('Inventory/purchaseOrder', $data);
     }
 
     public function informasiBahanBaku()

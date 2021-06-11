@@ -67,6 +67,7 @@ $routes->group('', ['filter' => 'role:Inventory'], function ($routes) {
 	$routes->get('/input-barang-jadi-inventory/(:num)', 'Inventory::inputBarangJadi/$1');
 	$routes->get('/request-pembelian-bahan-baku', 'Inventory::requestPembelianBahanBaku');
 	$routes->get('/input-request-pembelian-bahan-baku', 'Inventory::inputRequestPembelianBahanBaku');
+	$routes->post('/input-request-pembelian-bahan-baku/submit', 'Inventory::submitInputRequestPembelianBahanBaku');
 	$routes->get('/purchase-order', 'Inventory::purchaseOrder');
 	$routes->get('/informasi-bahan-baku', 'Inventory::informasiBahanBaku');
 	$routes->get('/input-bahan-baku', 'Inventory::inputBahanBaku');

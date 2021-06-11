@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -16,6 +20,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Request Pembelian Bahan Baku</h4>
+                        <?php if (session()->getFlashData('pesan')) : ?>
+                            <div class="alert alert-success" role="alert">
+                                <?= session()->getFlashData('pesan'); ?>
+                            </div>
+                        <?php endif; ?>
                         <a href="/input-request-pembelian-bahan-baku"><button type="button" class="btn mb-1 btn-primary mt-2" style="width: 100%;">Input Request Pembelian Bahan Baku</button></a>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
@@ -30,30 +39,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>1410003</td>
-                                        <td>Beras 1 KG</td>
-                                        <td>3</td>
-                                        <td>27 Januari 2021</td>
-                                        <td>Sudah Dipesan</td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>1410004</td>
-                                        <td>Beras 5 KG</td>
-                                        <td>5</td>
-                                        <td>27 Februari 2021</td>
-                                        <td>Sudah Dipesan</td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>1410005</td>
-                                        <td>Bibit Tomat</td>
-                                        <td>7</td>
-                                        <td>27 Maret 2021</td>
-                                        <td>Diproses</td>
-                                    </tr>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($reqBahanBaku as $b) : ?>
+                                        <tr>
+                                            <td><?= $i++; ?></td>
+                                            <td><?= $b['id_req_bahan_baku']; ?></td>
+                                            <td><?= $bahanBaku->find($b['id_bahan_baku'])['nama_bahan_baku']; ?></td>
+                                            <td><?= $b['kuantitas']; ?></td>
+                                            <td><?= $b['tgl_request']; ?></td>
+                                            <td><?= $b['status']; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -64,3 +60,4 @@
     </div>
     <!-- #/ container -->
 </div>
+<?= $this->endSection(); ?>

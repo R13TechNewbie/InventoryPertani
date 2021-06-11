@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -16,7 +20,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Purchase Order</h4>
-                        <!-- <a href="/input-bahan-baku-keluar"><button type="button" class="btn mb-1 btn-primary mt-2" style="width: 100%;">Input Bahan Baku Keluar</button></a> -->
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
@@ -29,35 +32,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1710010</th>
-                                        <td>PT. Permata</td>
-                                        <td>Rp.260.000</td>
-                                        <td>15 Maret 2021</td>
-                                        <td>
-                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-informasi-1"><i class="fa fa-info fa-change-to-white"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>1710011</th>
-                                        <td>PT Permata</td>
-                                        <td>Rp.150.000</td>
-                                        <td>27 Maret 2021</td>
-                                        <td>
-                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-informasi-2"><i class="fa fa-info fa-change-to-white"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>1710012</th>
-                                        <td>PT Permata</td>
-                                        <td>Rp.95.000</td>
-                                        <td>31 Maret 2021</td>
-                                        <td>
-                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-informasi-3"><i class="fa fa-info fa-change-to-white"></i></button>
-                                            <!-- modal -->
-
-                                        </td>
-                                    </tr>
+                                    <?php foreach ($purchaseOrder as $b) : ?>
+                                        <tr>
+                                            <td><?= $b['id_po']; ?></td>
+                                            <td><?= $supplier->find($b['id_supplier'])['nama_supplier']; ?></td>
+                                            <td><?= $b['total_harga']; ?></td>
+                                            <td><?= $b['tgl_po']; ?></td>
+                                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-informasi-1"><i class="fa fa-info fa-change-to-white"></i></button></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -86,7 +69,7 @@
 
                                                                     </div>
                                                                     <div class="col">
-                                                                        <label class="col-form-label">1710010</label>
+                                                                        <label class="col-form-label"><?= $b['id_po']; ?></label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
@@ -97,7 +80,7 @@
 
                                                                     </div>
                                                                     <div class="col">
-                                                                        <label class="col-form-label">12345</label>
+                                                                        <label class="col-form-label"><?= $b['id_supplier']; ?></label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
@@ -108,7 +91,7 @@
 
                                                                     </div>
                                                                     <div class="col">
-                                                                        <label class="col-form-label">PT. Permata</label>
+                                                                        <label class="col-form-label"><?= $supplier->find($b['id_supplier'])['nama_supplier'];; ?></label>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -122,7 +105,7 @@
 
                                                                     </div>
                                                                     <div class="col">
-                                                                        <label class="col-form-label">15 Maret 2021</label>
+                                                                        <label class="col-form-label"><?= $b['tgl_po']; ?></label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
@@ -133,7 +116,7 @@
 
                                                                     </div>
                                                                     <div class="col">
-                                                                        <label class="col-form-label">Jl. Marga Satwa no. 23</label>
+                                                                        <label class="col-form-label"><?= $b['alamat']; ?></label>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -151,30 +134,17 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr>
-                                                                        <th>1</th>
-                                                                        <td>110003</td>
-                                                                        <td>Gabah 1KG</td>
-                                                                        <td>3</td>
-                                                                        <td>Rp.15.000</td>
-                                                                        <td>Rp.45.000</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>2</th>
-                                                                        <td>110004</td>
-                                                                        <td>Bibit Tomat 500gr</td>
-                                                                        <td>5</td>
-                                                                        <td>Rp.15.000</td>
-                                                                        <td>Rp.75.000</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>3</th>
-                                                                        <td>110005</td>
-                                                                        <td>Bibit Semangka 500gr</td>
-                                                                        <td>7</td>
-                                                                        <td>Rp.20.000</td>
-                                                                        <td>Rp.140.000</td>
-                                                                    </tr>
+                                                                    <?php $i = 1; ?>
+                                                                    <?php foreach ($purchaseOrder as $d) : ?>
+                                                                        <tr>
+                                                                            <td><?= $i++; ?></td>
+                                                                            <td><?= $d['id_barang']; ?></td>
+                                                                            <td><?= $barang->find($d['id_barang'])['nama_barang']; ?></td>
+                                                                            <td><?= $d['jumlah_barang']; ?></td>
+                                                                            <td><?= $d['harga']; ?></td>
+                                                                            <td><?= $d['total_harga']; ?></td>
+                                                                        </tr>
+                                                                    <?php endforeach; ?>
                                                                 </tbody>
                                                                 <tfoot>
                                                                     <tr>
@@ -183,18 +153,6 @@
                                                                     </tr>
                                                                 </tfoot>
                                                             </table>
-                                                            <!-- <table>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <td></td>
-                                                                        <td></td>
-                                                                        <td></td>
-                                                                        <td>Total Tagihan</td>
-                                                                        <td>Rp.260.000</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table> -->
                                                         </div>
                                                     </form>
                                                 </div>
@@ -491,3 +449,5 @@
     </div>
     <!-- #/ container -->
 </div>
+
+<?= $this->endSection(); ?>

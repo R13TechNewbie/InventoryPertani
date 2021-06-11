@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class PurchaseOrderModel extends Model
 {
-    protected $table      = 'puchase_order';
+    protected $table      = 'purchase_order';
     protected $primaryKey = 'id_po';
 
     protected $useAutoIncrement = true;
@@ -25,6 +25,7 @@ class PurchaseOrderModel extends Model
 
     protected $useTimestamps = true;
     protected $createdField = 'tgl_po';
+    protected $updatedField = 'tgl_po';
     protected $dateFormat = 'date';
 
     // protected $returnType     = 'array';
