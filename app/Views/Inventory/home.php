@@ -10,6 +10,8 @@
     </div> -->
     <!-- row -->
     <div class="container-fluid">
+        <div class="alert alert-danger">Stok barang jadi "Prtni Anggur 500gr" kurang 3, <a href="#">klik disini</a> untuk membuat permintaan barang jadi ke produksi</div>
+        <div class="alert alert-warning">Stok barang baku "Gabah 5 Kg" sisa 3, <a href="#">klik disini</a> untuk membuat permintaan bahan baku ke purchasing</div>
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
