@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Database\Migrations\JenisBahanBaku;
 use App\Models\BahanBakuKeluarModel;
+use App\Models\BahanBakuMasukModel;
 use Config\View;
 
 use App\Models\BahanBakuModel;
@@ -35,6 +36,7 @@ class Inventory extends BaseController
     protected $PurchaseOrderModel;
     protected $supplierModel;
     protected $barangModel;
+    protected $bahanBakuMasukModel;
 
     public function __construct()
     {
@@ -52,6 +54,7 @@ class Inventory extends BaseController
         $this->PurchaseOrderModel = new PurchaseOrderModel();
         $this->supplierModel = new SupplierModel();
         $this->barangModel = new BarangModel();
+        $this->bahanBakuMasukModel = new BahanBakuMasukModel();
     }
 
     public function index()
@@ -550,11 +553,17 @@ class Inventory extends BaseController
     public function cetakLaporan()
     {
         $data = [
-            'title' => 'Inventory'
+            'title' => 'Inventory',
+            'bahanBakuMasuk' => $this->bahanBakuMasukModel->getBahanBakuMasuk(),
+            'bahanBakuKeluar' => $this->bahanBakuKeluarModel->getBahanBakuKeluar(),
+            'barangJadiMasuk' => $this->barangJadiMasukModel->getBarangJadiMasuk(),
+            'barangJadiKeluar' => $this->barangJadiKeluarModel->getBarangJadiKeluar(),
+            'bahanBaku' => $this->bahanBakuModel,
+            'barangJadi' => $this->barangJadiModel,
+            'reqBahanBaku' => $this->requestBahanBakuModel,
+            'reqBarangJadi' => $this->requestBarangJadiKeluarModel,
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/cetakLaporan');
-        echo view('Layout/footer');
+        return view('Inventory/cetakLaporan', $data);
     }
 }

@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -40,21 +44,14 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <td>Beras 1 KG</td>
-                                                        <td>3</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2</th>
-                                                        <td>Beras 5 KG</td>
-                                                        <td>5</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>3</th>
-                                                        <td>Bibit Tomat</td>
-                                                        <td>7</td>
-                                                    </tr>
+                                                    <?php $i = 1; ?>
+                                                    <?php foreach ($bahanBakuMasuk as $d) : ?>
+                                                        <tr>
+                                                            <td><?= $i++; ?></td>
+                                                            <td><?= $bahanBaku->find($d['id_bahan_baku'])['nama_bahan_baku']; ?></td>
+                                                            <td><?= $d['kuantitas']; ?></td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -72,21 +69,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <td>Beras 1 KG</td>
-                                                        <td>3</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2</th>
-                                                        <td>Beras 5 KG</td>
-                                                        <td>5</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>3</th>
-                                                        <td>Bibit Tomat</td>
-                                                        <td>7</td>
-                                                    </tr>
+                                                    <?php foreach ($bahanBakuKeluar as $d) : ?>
+                                                        <tr>
+                                                            <td><?= $i++; ?></td>
+                                                            <td><?= $bahanBaku->find($reqBahanBaku->find($d['id_req_bahan_baku'])['id_bahan_baku'])['nama_bahan_baku']; ?></td>
+                                                            <td><?= $reqBahanBaku->find($d['id_req_bahan_baku'])['kuantitas'] ?></td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -105,21 +94,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <td>Beras Pertani 1 KG</td>
-                                                        <td>3</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2</th>
-                                                        <td>Beras Pertani 5 KG</td>
-                                                        <td>5</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>3</th>
-                                                        <td>Bibit Tomat Pertani</td>
-                                                        <td>7</td>
-                                                    </tr>
+                                                    <?php foreach ($barangJadiMasuk as $d) : ?>
+                                                        <tr>
+                                                            <td><?= $i++; ?></td>
+                                                            <td><?= $barangJadi->find($d['id_barang_jadi'])['nama_barang_jadi']; ?></td>
+                                                            <td><?= $d['kuantitas'] ?></td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -137,21 +118,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <td>Beras Pertani 1 KG</td>
-                                                        <td>3</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2</th>
-                                                        <td>Beras Pertani 5 KG</td>
-                                                        <td>5</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>3</th>
-                                                        <td>Bibit Tomat Pertani</td>
-                                                        <td>7</td>
-                                                    </tr>
+                                                    <?php foreach ($barangJadiKeluar as $d) : ?>
+                                                        <tr>
+                                                            <td><?= $i++; ?></td>
+                                                            <td><?= $barangJadi->find($reqBarangJadi->find($d['id_req_barang_jadi_keluar'])['id_barang_jadi'])['nama_barang_jadi']; ?></td>
+                                                            <td><?= $reqBarangJadi->find($d['id_req_barang_jadi_keluar'])['kuantitas'] ?></td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -194,3 +167,4 @@
     </div>
     <!-- #/ container -->
 </div>
+<?= $this->endSection(); ?>
