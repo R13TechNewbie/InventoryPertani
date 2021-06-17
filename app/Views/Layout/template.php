@@ -50,7 +50,8 @@
                     <span class="logo-compact"><img src="../../images/logo-compact.png" alt=""></span>
                     <span class="brand-title">
                         <!-- <img src="../../images/logo-text.png" alt=""> -->
-                        <h3 style="color: white;">Pertani</h3>
+                        <center><img src="https://3.bp.blogspot.com/-wPuGmHgX_Mg/Uy-ZVPFks8I/AAAAAAAAQaw/yTJUkv6uD_k/s1600/LOGO+PT+PERTANI.png" alt="Logo Pertani" style="height: 37px;"></center>
+                        <!-- <h3 style="color: white;">Pertani</h3> -->
                     </span>
                 </a>
             </div>
@@ -249,13 +250,45 @@
                     <li class="nav-label">Menu</li>
                     <li>
                         <a class="has-arrow" href="/" aria-expanded="false">
-                            <i class="icon-home menu-icon"></i><span class="nav-text">Home</span>
+                            <i class="menu-icon"></i><span class="nav-text">Dashboard</span>
                         </a>
                         <!-- <ul aria-expanded="false">
                             <li><a href="./index.html">Home 1</a></li>
                             <li><a href="./index-2.html">Home 2</a></li>
                         </ul> -->
                     </li>
+                    <?php helper('auth'); ?>
+                    <?php if (in_groups('Inventory')) : ?>
+                        <li>
+                            <a class="has-arrow" href="/" aria-expanded="false">
+                                <i class="menu-icon"></i><span class="nav-text">Stok Bahan Baku</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="./input-bahan-baku">Input Bahan Baku</a></li>
+                                <li><a href="./informasi-bahan-baku-keluar">Informasi Bahan Baku Keluar</a></li>
+                                <li><a href="./request-pembelian-bahan-baku">Request Pembelian Bahan Baku</a></li>
+                                <li><a href="./purchase-order">Lihat Purchase Order</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="/" aria-expanded="false">
+                                <i class="menu-icon"></i><span class="nav-text">Stok Barang Jadi</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="./informasi-barang-jadi-inventory">Informasi Barang Jadi</a></li>
+                                <li><a href="./request-barang-jadi-keluar">Request Barang Jadi Keluar</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="/cetak-laporan" aria-expanded="false">
+                                <i class="menu-icon"></i><span class="nav-text">Cetak Laporan</span>
+                            </a>
+                            <!-- <ul aria-expanded="false">
+                                <li><a href="./index.html">Home 1</a></li>
+                                <li><a href="./index-2.html">Home 2</a></li>
+                            </ul> -->
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
