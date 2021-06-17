@@ -10912,7 +10912,9 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.05rem;
-  color: #abafb3;
+  /* color: #abafb3; */
+  color: #fefefe;
+  background: #4f8937;
 }
 
 .nav-badge {
@@ -13876,7 +13878,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 .login-form__btn {
-  background: #455f98;
+  /* background: #455f98; */
+  background: #e77817;
   color: #fff;
   padding: 13px 40px;
   font-size: 14px;
@@ -13888,7 +13891,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 .login-form__btn.submit {
   padding: 15px 40px;
-  background: #7571f9;
+  /* background: #7571f9; */
+  background: #e87918;
   font-weight: 700;
 }
 
@@ -19751,7 +19755,8 @@ html[dir="rtl"]
 }
 
 [data-nav-headerbg="color_1"] .nav-header {
-  background-color: #5fbc58;
+  /* background-color: #5fbc58; */
+  background-color: #fff;
 }
 
 [data-nav-headerbg="color_2"] .nav-header {
@@ -19942,7 +19947,8 @@ html[dir="rtl"]
   background-color: #fff;
 }
 [data-sibebarbg="color_1"] .nk-sidebar .metismenu > li {
-  color: #27394f;
+  /* color: #27394f; */
+  color: #fefefe;
 }
 [data-sibebarbg="color_1"] .nk-sidebar .metismenu > li ul a {
   color: #76838f;

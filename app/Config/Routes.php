@@ -42,6 +42,7 @@ $routes->post('/terima-insert', 'Home::terimaInsert');
 $routes->post('/terima-update', 'Home::terimaUpdate');
 $routes->get('/test-insert-bahan-baku', 'Home::tesInsertBahanBaku');
 $routes->post('/terima-insert-bahan-baku', 'Home::terimaInsertBahanBaku');
+$routes->get('/login-test', 'Home::logintest');
 
 
 $routes->group('', ['filter' => 'role:Inventory'], function ($routes) {

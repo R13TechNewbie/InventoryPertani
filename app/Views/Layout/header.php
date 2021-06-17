@@ -50,7 +50,8 @@
                     <span class="logo-compact"><img src="../../images/logo-compact.png" alt=""></span>
                     <span class="brand-title">
                         <!-- <img src="../../images/logo-text.png" alt=""> -->
-                        <h3 style="color: white;">Pertani</h3>
+                        <center><img src="https://3.bp.blogspot.com/-wPuGmHgX_Mg/Uy-ZVPFks8I/AAAAAAAAQaw/yTJUkv6uD_k/s1600/LOGO+PT+PERTANI.png" alt="Logo Pertani" style="height: 37px;"></center>
+                        <!-- <h3 style="color: white;">Pertani</h3> -->
                     </span>
                 </a>
             </div>

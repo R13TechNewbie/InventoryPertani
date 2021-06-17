@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\tesaja;
 use App\Models\BahanBakuModel;
-
+use CodeIgniter\Debug\Toolbar\Collectors\Views;
 use Config\View;
 
 class Home extends BaseController
@@ -116,5 +116,10 @@ class Home extends BaseController
 		echo ('data berhasil diupload');
 
 		dd($this->bahanBakuModel->findAll());
+	}
+
+	public function logintest()
+	{
+		return view(('Layout/login-custom'));
 	}
 }
