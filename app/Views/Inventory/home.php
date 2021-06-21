@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -18,8 +22,8 @@
                     <div class="card-body">
                         <h3 class="card-title text-white">Bahan Baku Masuk/Keluar</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white">59/48</h2>
-                            <p class="text-white mb-0">Jan - March 2021</p>
+                            <h2 class="text-white"><?= $totalBahanBakuMasuk; ?>/<?= $totalBahanBakuKeluar; ?></h2>
+                            <p class="text-white mb-0">Jan - Jun 2021</p>
                         </div>
                         <span class="float-right display-5 opacity-5"><i class="fa fa-exchange"></i></span>
                     </div>
@@ -30,8 +34,8 @@
                     <div class="card-body">
                         <h3 class="card-title text-white">Barang Jadi Masuk/Keluar</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white">60/36</h2>
-                            <p class="text-white mb-0">Jan - March 2021</p>
+                            <h2 class="text-white"><?= $totalBarangJadiMasuk; ?>/<?= $totalBarangJadiKeluar; ?></h2>
+                            <p class="text-white mb-0">Jan - Jun 2021</p>
                         </div>
                         <span class="float-right display-5 opacity-5"><i class="fa fa-exchange"></i></span>
                     </div>
@@ -238,3 +242,4 @@
     </div>
     <!-- #/ container -->
 </div>
+<?= $this->endSection(); ?>

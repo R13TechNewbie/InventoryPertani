@@ -60,13 +60,41 @@ class Inventory extends BaseController
 
     public function index()
     {
+
+        // echo view('Layout/header', $data);
+        // echo view('Inventory/home');
+        // echo view('Layout/footer');
+
+        $totalBahanBakuMasuk = 0;
+        $totalBahanBakuKeluar = 0;
+        $totalBarangJadiMasuk = 0;
+        $totalBarangJadiKeluar = 0;
+
+        foreach ($this->bahanBakuMasukModel->getBahanBakuMasuk() as $bb_in) {
+            $totalBahanBakuMasuk = $totalBahanBakuMasuk + $bb_in['kuantitas'];
+        }
+
+        foreach ($this->bahanBakuKeluarModel->getBahanBakuKeluar() as $bb_out) {
+            $totalBahanBakuKeluar = $totalBahanBakuKeluar + $this->requestBahanBakuModel->find($bb_out['id_req_bahan_baku'])['kuantitas'];
+        }
+
+        foreach ($this->barangJadiMasukModel->getBarangJadiMasuk() as $bj_in) {
+            $totalBarangJadiMasuk = $totalBarangJadiMasuk + $bj_in['kuantitas'];
+        }
+
+        foreach ($this->barangJadiKeluarModel->getBarangJadiKeluar() as $bj_out) {
+            $totalBarangJadiKeluar = $totalBarangJadiKeluar + $this->requestBarangJadiKeluarModel->find($bj_out['id_req_barang_jadi_keluar'])['kuantitas'];
+        }
+
         $data = [
-            'title' => 'Home'
+            'title' => 'Home',
+            'totalBahanBakuMasuk' => $totalBahanBakuMasuk,
+            'totalBahanBakuKeluar' => $totalBahanBakuKeluar,
+            'totalBarangJadiMasuk' => $totalBarangJadiMasuk,
+            'totalBarangJadiKeluar' => $totalBarangJadiKeluar
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/home');
-        echo view('Layout/footer');
+        return view('Inventory/home', $data);
     }
 
     public function stokBarangJadi()
