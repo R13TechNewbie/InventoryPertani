@@ -41,6 +41,7 @@
                                                         <th>Id</th>
                                                         <th>Nama Bahan Baku</th>
                                                         <th>Jumlah</th>
+                                                        <th>Tgl Masuk</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -50,6 +51,7 @@
                                                             <td><?= $i++; ?></td>
                                                             <td><?= $bahanBaku->find($d['id_bahan_baku'])['nama_bahan_baku']; ?></td>
                                                             <td><?= $d['kuantitas']; ?></td>
+                                                            <td><?= $d['tgl_bahan_baku_masuk']; ?></td>
                                                         </tr>
                                                     <?php endforeach; ?>
                                                 </tbody>
@@ -66,6 +68,7 @@
                                                         <th>Id</th>
                                                         <th>Nama Bahan Baku</th>
                                                         <th>Jumlah</th>
+                                                        <th>Tgl Keluar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -75,6 +78,7 @@
                                                             <td><?= $i++; ?></td>
                                                             <td><?= $bahanBaku->find($reqBahanBaku->find($d['id_req_bahan_baku'])['id_bahan_baku'])['nama_bahan_baku']; ?></td>
                                                             <td><?= $reqBahanBaku->find($d['id_req_bahan_baku'])['kuantitas'] ?></td>
+                                                            <td><?= $d['tgl_bahan_baku_keluar']; ?></td>
                                                         </tr>
                                                     <?php endforeach; ?>
                                                 </tbody>
@@ -92,14 +96,17 @@
                                                         <th>Id</th>
                                                         <th>Nama Barang Jadi</th>
                                                         <th>Jumlah</th>
+                                                        <th>Tgl Masuk</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <?php $i = 1; ?>
                                                     <?php foreach ($barangJadiMasuk as $d) : ?>
                                                         <tr>
                                                             <td><?= $i++; ?></td>
                                                             <td><?= $barangJadi->find($d['id_barang_jadi'])['nama_barang_jadi']; ?></td>
                                                             <td><?= $d['kuantitas'] ?></td>
+                                                            <td><?= $d['tgl_barang_jadi_masuk']; ?></td>
                                                         </tr>
                                                     <?php endforeach; ?>
                                                 </tbody>
@@ -116,14 +123,17 @@
                                                         <th>Id</th>
                                                         <th>Nama Barang Jadi</th>
                                                         <th>Jumlah</th>
+                                                        <th>Tgl Keluar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <?php $i = 1; ?>
                                                     <?php foreach ($barangJadiKeluar as $d) : ?>
                                                         <tr>
                                                             <td><?= $i++; ?></td>
                                                             <td><?= $barangJadi->find($reqBarangJadi->find($d['id_req_barang_jadi_keluar'])['id_barang_jadi'])['nama_barang_jadi']; ?></td>
                                                             <td><?= $reqBarangJadi->find($d['id_req_barang_jadi_keluar'])['kuantitas'] ?></td>
+                                                            <td><?= $d['tgl_barang_keluar']; ?></td>
                                                         </tr>
                                                     <?php endforeach; ?>
                                                 </tbody>

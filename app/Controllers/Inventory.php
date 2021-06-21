@@ -636,7 +636,29 @@ class Inventory extends BaseController
             'reqBarangJadi' => $this->requestBarangJadiKeluarModel
         ];
 
-        return view('Inventory/printBarangJadi', $data);
+        $html = view('Inventory/printBarangJadi', $data);
+
+        //create new pdf document
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+        // set document information
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Inventory PT. Pertani');
+        $pdf->SetTitle('Laporan Barang Jadi');
+        $pdf->SetSubject('Laporan Barang Jadi');
+
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+
+        $pdf->AddPage();
+
+        //output html content
+        $pdf->writeHTML($html, true, false, true, false, '');
+        //ubah content type ke pdf
+        $this->response->setContentType('application/pdf');
+
+        //close and output PDF document
+        $pdf->Output('Laporan_Barang_jadi.pdf', 'I');
     }
 
     public function printBahanBakuBarangJadi()
@@ -653,6 +675,36 @@ class Inventory extends BaseController
             'reqBarangJadi' => $this->requestBarangJadiKeluarModel,
         ];
 
-        return view('Inventory/printBahanBakuBarangJadi', $data);
+        $html1 = view('Inventory/printBahanBaku', $data);
+        $html2 = view('Inventory/printBarangJadi', $data);
+
+        //create new pdf document
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+        // set document information
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Inventory PT. Pertani');
+        $pdf->SetTitle('Laporan Bahan Baku & Barang Jadi');
+        $pdf->SetSubject('Laporan Bahan Baku & Barang Jadi');
+
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+
+        //page bahan baku
+        $pdf->AddPage();
+
+        //output html content
+        $pdf->writeHTML($html1, true, false, true, false, '');
+
+        //page barang jadi
+        $pdf->AddPage();
+
+        //output html content
+        $pdf->writeHTML($html2, true, false, true, false, '');
+        //ubah content type ke pdf
+        $this->response->setContentType('application/pdf');
+
+        //close and output PDF document
+        $pdf->Output('Laporan_Bahan_Baku_Barang_jadi.pdf', 'I');
     }
 }
