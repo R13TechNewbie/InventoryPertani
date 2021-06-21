@@ -77,6 +77,10 @@ $routes->group('', ['filter' => 'role:Inventory'], function ($routes) {
 	$routes->get('/input-bahan-baku/(:num)', 'Inventory::inputBahanBaku/$1');
 	$routes->delete('/informasi-bahan-baku/delete/(:num)', 'Inventory::deleteBahanBaku/$1');
 	$routes->get('/cetak-laporan', 'Inventory::cetakLaporan');
+	$routes->post('/cetak-laporan/handler', 'Inventory::printPDF');
+	$routes->get('/print-bahan-baku', 'Inventory::printBahanBaku');
+	$routes->get('/print-barang-jadi', 'Inventory::printBarangJadi');
+	$routes->get('/print-bahan-baku-barang-jadi', 'Inventory::printBahanBakuBarangJadi');
 });
 
 

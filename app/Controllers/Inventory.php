@@ -20,6 +20,7 @@ use App\Models\RequestBarangJadiKeluarModel;
 use App\Models\SupplierModel;
 use CodeIgniter\I18n\Time;
 use PhpParser\Node\Stmt\Echo_;
+use TCPDF;
 
 class Inventory extends BaseController
 {
@@ -565,5 +566,93 @@ class Inventory extends BaseController
         ];
 
         return view('Inventory/cetakLaporan', $data);
+    }
+
+    public function printPDF()
+    {
+        $printfile = $this->request->getPost('printfile');
+
+        switch ($printfile) {
+            case 'bahanbaku':
+                return redirect()->to('/print-bahan-baku');
+                break;
+
+            case 'barangjadi':
+                return redirect()->to('/print-barang-jadi');
+                break;
+
+            case 'bahanbakubarangjadi':
+                return redirect()->to('/print-bahan-baku-barang-jadi');
+                break;
+
+            default:
+                return redirect()->back();
+                break;
+        }
+    }
+
+    public function printBahanBaku()
+    {
+        $data = [
+            'title' => 'Inventory',
+            'bahanBakuMasuk' => $this->bahanBakuMasukModel->getBahanBakuMasuk(),
+            'bahanBakuKeluar' => $this->bahanBakuKeluarModel->getBahanBakuKeluar(),
+            'bahanBaku' => $this->bahanBakuModel,
+            'reqBahanBaku' => $this->requestBahanBakuModel
+        ];
+
+        $html =  view('Inventory/printBahanBaku', $data);
+
+        //create new pdf document
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+        // set document information
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Inventory PT. Pertani');
+        $pdf->SetTitle('Laporan Bahan Baku');
+        $pdf->SetSubject('Laporan Bahan Baku');
+
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+
+        $pdf->AddPage();
+
+        //output html content
+        $pdf->writeHTML($html, true, false, true, false, '');
+        //ubah content type ke pdf
+        $this->response->setContentType('application/pdf');
+
+        //close and output PDF document
+        $pdf->Output('Laporan_Bahan_Baku.pdf', 'I');
+    }
+
+    public function printBarangJadi()
+    {
+        $data = [
+            'title' => 'Inventory',
+            'barangJadiMasuk' => $this->barangJadiMasukModel->getBarangJadiMasuk(),
+            'barangJadiKeluar' => $this->barangJadiKeluarModel->getBarangJadiKeluar(),
+            'barangJadi' => $this->barangJadiModel,
+            'reqBarangJadi' => $this->requestBarangJadiKeluarModel
+        ];
+
+        return view('Inventory/printBarangJadi', $data);
+    }
+
+    public function printBahanBakuBarangJadi()
+    {
+        $data = [
+            'title' => 'Inventory',
+            'bahanBakuMasuk' => $this->bahanBakuMasukModel->getBahanBakuMasuk(),
+            'bahanBakuKeluar' => $this->bahanBakuKeluarModel->getBahanBakuKeluar(),
+            'barangJadiMasuk' => $this->barangJadiMasukModel->getBarangJadiMasuk(),
+            'barangJadiKeluar' => $this->barangJadiKeluarModel->getBarangJadiKeluar(),
+            'bahanBaku' => $this->bahanBakuModel,
+            'barangJadi' => $this->barangJadiModel,
+            'reqBahanBaku' => $this->requestBahanBakuModel,
+            'reqBarangJadi' => $this->requestBarangJadiKeluarModel,
+        ];
+
+        return view('Inventory/printBahanBakuBarangJadi', $data);
     }
 }

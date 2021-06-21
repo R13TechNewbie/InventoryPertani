@@ -264,7 +264,7 @@
                                 <i class="menu-icon"></i><span class="nav-text">Stok Bahan Baku</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="./input-bahan-baku">Input Bahan Baku</a></li>
+                                <li><a href="./informasi-bahan-baku">Informasi Bahan Baku</a></li>
                                 <li><a href="./informasi-bahan-baku-keluar">Informasi Bahan Baku Keluar</a></li>
                                 <li><a href="./request-pembelian-bahan-baku">Request Pembelian Bahan Baku</a></li>
                                 <li><a href="./purchase-order">Lihat Purchase Order</a></li>

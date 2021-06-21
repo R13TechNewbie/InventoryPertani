@@ -20,9 +20,9 @@
                             <div class="list-group">
                                 <a href="/informasi-bahan-baku" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Input Bahan Baku</h5>
+                                        <h5 class="mb-1">Informasi Bahan Baku</h5>
                                     </div>
-                                    <p class="mb-1">Input bahan baku ke Stok Bahan Baku</p>
+                                    <p class="mb-1">Lihat dan input bahan baku ke Stok Bahan Baku</p>
                                 </a>
                                 <a href="/informasi-bahan-baku-keluar" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">

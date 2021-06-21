@@ -15,7 +15,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Input Bahan Baku</h4>
+                        <h4 class="card-title">Informasi Bahan Baku</h4>
                         <?php if (session()->getFlashData('pesan')) : ?>
                             <div class="alert alert-success" role="alert">
                                 <?= session()->getFlashData('pesan'); ?>

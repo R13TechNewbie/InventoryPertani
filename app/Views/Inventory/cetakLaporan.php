@@ -33,8 +33,8 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="bahan-baku" role="tabpanel">
                                     <div class="p-t-15">
+                                        <h4 class="card-title">Bahan Baku Masuk </h4>
                                         <div class="table-responsive">
-                                            <h4 class="card-title">Bahan Baku Masuk </h4>
                                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                                 <thead>
                                                     <tr>
@@ -69,6 +69,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <?php $i = 1; ?>
                                                     <?php foreach ($bahanBakuKeluar as $d) : ?>
                                                         <tr>
                                                             <td><?= $i++; ?></td>
@@ -134,31 +135,33 @@
                         </div>
                         <div class="bootstrap-modal">
                             <!-- Modal -->
-                            <div class="modal fade" id="basicModal" style="display: none;" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Cetak</h5>
-                                            <button type="button" class="close" data-dismiss="modal"><span>×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label>Pilih Opsi Cetak:</label>
-                                                <select class="form-control" id="sel1">
-                                                    <option>Cetak Laporan Bahan Baku Saja</option>
-                                                    <option>Cetak Laporan Barang Jadi Saja</option>
-                                                    <option>Cetak Laporan Bahan Baku dan Barang Jadi</option>
-                                                </select>
+                            <form action="/cetak-laporan/handler" method="post" target="__blank">
+                                <div class="modal fade" id="basicModal" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Cetak</h5>
+                                                <button type="button" class="close" data-dismiss="modal"><span>×</span>
+                                                </button>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                            <button type="button" class="btn btn-primary">Cetak</button>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>Pilih Opsi Cetak:</label>
+                                                    <select class="form-control" id="printfile" name="printfile" autofocus>
+                                                        <option value="bahanbaku">Cetak Laporan Bahan Baku Saja</option>
+                                                        <option value="barangjadi">Cetak Laporan Barang Jadi Saja</option>
+                                                        <option value="bahanbakubarangjadi">Cetak Laporan Bahan Baku dan Barang Jadi</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-primary">Cetak</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
