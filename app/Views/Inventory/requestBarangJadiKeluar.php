@@ -82,7 +82,7 @@
                                             <td><?= $b['status']; ?></td>
                                             <td>
                                                 <a href="/input-barang-jadi-keluar/<?= $b['id_req_barang_jadi_keluar']; ?>/<?= $b['id_barang_jadi_keluar']; ?>"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
-                                                <a href="#"><button class="btn btn-danger" data-toggle="modal" data-target="#ModalHapus"><i class="fa fa-trash"></i></button></a>
+                                                <a href="#"><button class="btn btn-danger delete-row" value="<?= $b['id_req_barang_jadi_keluar']; ?>"><i class="fa fa-trash"></i></button></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <!-- modal -->
-                    <form action="/request-barang-jadi-keluar/delete/<?= $b['id_barang_jadi_keluar']; ?>" method="post">
+                    <form id="FormHapus" action="/request-barang-jadi-keluar/delete/<?= $b['id_barang_jadi_keluar']; ?>" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <div class="modal fade" id="ModalHapus">
                             <div class="modal-dialog" role="document">
@@ -101,7 +101,7 @@
                                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">Apakah anda yakin akan menghapus data barang jadi keluar "<?= $barangJadi->find($requestBarangJadiKeluarTertentu->find($b['id_req_barang_jadi_keluar'])['id_barang_jadi'])['nama_barang_jadi']; ?>" beserta kuantitasnya?</div>
+                                    <div class="modal-body">Apakah anda yakin akan menghapus data barang jadi keluar ini beserta kuantitasnya?</div>
                                     <input type="hidden" name="_method" value="DELETE">
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
@@ -119,5 +119,18 @@
     </div>
     <!-- #/ container -->
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.delete-row', function() {
+            var id = $(this).val();
+            var action = "/request-barang-jadi-keluar/delete/" + id;
+
+            $('#ModalHapus').modal('show');
+            $('#FormHapus').attr('action', action);
+        });
+    });
+</script>
 
 <?= $this->endSection(); ?>

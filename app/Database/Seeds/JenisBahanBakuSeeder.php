@@ -9,6 +9,9 @@ class JenisBahanBakuSeeder extends Seeder
 	public function run()
 	{
 		//
+
+		$faker = \Faker\Factory::create();
+
 		$data = [
 			[
 				'id_jenis_bahan_baku'    => '1',
@@ -20,6 +23,10 @@ class JenisBahanBakuSeeder extends Seeder
 			],
 			[
 				'id_jenis_bahan_baku'    => '3',
+				'jenis_bahan_baku'    => 'Pupuk',
+			],
+			[
+				'id_jenis_bahan_baku'    => '4',
 				'jenis_bahan_baku'    => 'Lain-lain',
 			],
 		];

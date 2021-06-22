@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -37,11 +41,12 @@
                                     <?php foreach ($bahanBaku as $b) : ?>
                                         <tr>
                                             <th><?= $i++; ?></th>
-                                            <td><?= $b['nama_bahan_baku']; ?></td>
+                                            <td id="data-nama-td"><?= $b['nama_bahan_baku']; ?></td>
                                             <td><?= $b['stock_bahan_baku']; ?></td>
                                             <td>
                                                 <a href="/input-bahan-baku/<?= $b['id_bahan_baku']; ?>"><button class="btn btn-success"><i class="fa fa-pencil fa-change-to-white"></i></button></a>
-                                                <a href="#"><button class="btn btn-danger" data-toggle="modal" data-target="#ModalHapus"><i class="fa fa-trash"></i></button></a>
+                                                <a href="#"><button class="btn btn-danger delete-row" value="<?= $b['id_bahan_baku']; ?>"><i class="fa fa-trash"></i></button></a>
+                                                <!-- data-toggle="modal" data-target="#ModalHapus" -->
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -50,7 +55,7 @@
                         </div>
                     </div>
                     <!-- modal -->
-                    <form action="/informasi-bahan-baku/delete/<?= $b['id_bahan_baku']; ?>" method="post">
+                    <form id="FormHapus" action="/informasi-bahan-baku/delete/<?= $b['id_bahan_baku']; ?>" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <div class="modal fade" id="ModalHapus">
                             <div class="modal-dialog" role="document">
@@ -60,7 +65,7 @@
                                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">Apakah anda yakin akan menghapus data "<?= $b['nama_bahan_baku']; ?>" beserta jumlahnya?</div>
+                                    <div class="modal-body">Apakah anda yakin akan menghapus data ini beserta jumlahnya?</div>
                                     <input type="hidden" name="_method" value="DELETE">
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
@@ -78,3 +83,17 @@
     </div>
     <!-- #/ container -->
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.delete-row', function() {
+            var id = $(this).val();
+            var action = "/informasi-bahan-baku/delete/" + id;
+
+            $('#ModalHapus').modal('show');
+            $('#FormHapus').attr('action', action);
+        });
+    });
+</script>
+
+<?= $this->endSection(); ?>

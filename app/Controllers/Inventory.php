@@ -253,15 +253,28 @@ class Inventory extends BaseController
         return redirect()->to('/informasi-bahan-baku-keluar');
     }
 
+    public function deleteBahanBakuKeluar($idBahanBakuKeluar)
+    {
+        $data = [
+            'title' => 'Inventory',
+            'alert' => 'Data berhasil dihapus'
+        ];
+
+        $this->bahanBakuKeluarModel->delete($idBahanBakuKeluar);
+
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+
+        return redirect()->to('/informasi-bahan-baku-keluar');
+    }
+
     public function informasiBarangJadi()
     {
         $data = [
             'title' => 'Inventory',
-            'barangJadiMasuk' => $this->barangJadiMasukModel->getBarangJadiMasuk(),
-            'barangJadi' => $this->barangJadiModel,
+            // 'barangJadiMasuk' => $this->barangJadiMasukModel->getBarangJadiMasuk(),
+            'barangJadi' => $this->barangJadiModel->getBarangJadi(),
             'jenisBarangJadi' => $this->jenisBarangJadiModel,
         ];
-
 
         return view('Inventory/informasiBarangJadi', $data);
     }
@@ -270,7 +283,7 @@ class Inventory extends BaseController
     {
         if (!empty($idBarangJadi)) {
 
-            dd($this->barangJadiModel->getBarangJadi(($idBarangJadi)));
+            // dd($idBarangJadi);
             $barangJadi = $this->barangJadiModel->getBarangJadi($idBarangJadi);
             $idJenisBarangJadi = $this->barangJadiModel->getBarangJadi(($idBarangJadi))['id_jenis_barang_jadi'];
             $jenisBarangJadi = $this->jenisBarangJadiModel->getJenisBarangJadi($idJenisBarangJadi);
@@ -351,6 +364,8 @@ class Inventory extends BaseController
         foreach ($this->barangJadiModel->getBarangJadi() as $b) {
             if ($b['nama_barang_jadi'] == $this->request->getPost('nama_barang_jadi')) {
                 $idBarangJadi = $b['id_barang_jadi'];
+            } else {
+                $idBarangJadi = $this->request->getPost('id_bahan_baku');
             }
         };
 
@@ -358,7 +373,7 @@ class Inventory extends BaseController
             'id_barang_jadi' => $idBarangJadi,
             'nama_barang_jadi' => $this->request->getPost('nama_barang_jadi'),
             'id_jenis_barang_jadi' => $this->request->getPost('id_jenis_barang_jadi'),
-            'kuantitas' => $this->request->getPost('stock_barang_jadi'),
+            'stock_barang_jadi' => $this->request->getPost('stock_barang_jadi'),
             'tgl_barang_jadi_masuk' => $this->myTime,
             'alert' => 'Data berhasil ditambah/diubah'
         ];
@@ -368,9 +383,23 @@ class Inventory extends BaseController
             $data['id_barang_jadi'] = $this->barangJadiModel->find($data['nama_barang_jadi']);
         }
 
-        $this->barangJadiMasukModel->save($data);
+        $this->barangJadiModel->save($data);
 
         session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');
+
+        return redirect()->to('/informasi-barang-jadi-inventory');
+    }
+
+    public function deleteBarangJadi($idBarangJadi)
+    {
+        $data = [
+            'title' => 'Inventory',
+            'alert' => 'Data berhasil dihapus'
+        ];
+
+        $this->barangJadiModel->delete($idBarangJadi);
+
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
 
         return redirect()->to('/informasi-barang-jadi-inventory');
     }
@@ -461,9 +490,9 @@ class Inventory extends BaseController
             'bahanBaku' => $this->bahanBakuModel->getBahanBaku()
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Inventory/informasiBahanBaku', $data);
-        echo view('Layout/footer');
+        // echo view('Layout/header');
+        return view('Inventory/informasiBahanBaku', $data);
+        // echo view('Layout/footer');
     }
 
     public function inputBahanBaku($idBahanBaku = false)

@@ -69,7 +69,7 @@
                                         <label class="col-lg-4 col-form-label" for="val-items">Nama Barang Jadi<span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control <?= ($validation->hasError('nama_barang_jadi')) ? 'is-invalid' : ''; ?>" id="nama_barang_jadi" name="nama_barang_jadi" placeholder="Bibit Semangka 500gr" value="<?= old('nama_barang_jadi'); ?>">
+                                            <input type="text" class="form-control <?= ($validation->hasError('nama_barang_jadi')) ? 'is-invalid' : ''; ?>" id="nama_barang_jadi" name="nama_barang_jadi" placeholder="Bibit Semangka 500gr" value="<?= (old('nama_barang_jadi') == '') ? $barangJadiTertentu['nama_barang_jadi'] : old('nama_barang_jadi'); ?>">
                                             <div class="invalid-feedback">
                                                 <?= $validation->getError('nama_barang_jadi'); ?>
                                             </div>
@@ -104,7 +104,7 @@
                                         <label class="col-lg-4 col-form-label" for="val-digits">Jumlah <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="number" class="form-control" id="stock_barang_jadi" name="stock_barang_jadi" placeholder="5" value="<?= old('stock_barang_jadi'); ?>">
+                                            <input type="number" class="form-control" id="stock_barang_jadi" name="stock_barang_jadi" placeholder="5" value="<?= (old('stock_barang_jadi') == '') ? $barangJadiTertentu['stock_barang_jadi'] : old('stock_barang_jadi'); ?>">
                                         </div>
                                     </div>
                                 <?php endif; ?>

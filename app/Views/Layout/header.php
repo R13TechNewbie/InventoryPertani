@@ -12,6 +12,8 @@
     <link href="../../plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="../../css/style.css" rel="stylesheet">
     <!-- <link href="css/test.css" rel="stylesheet"> -->
+    <!-- Script Jquery harus dipanggil di header -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
