@@ -18,11 +18,11 @@
                         <h4 class="card-title">Menu Supplier</h4>
                         <div class="basic-list-group">
                             <div class="list-group">
-                                <a href="/kirim-bahan-baku" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <a href="/informasi-supplier" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Kirim Bahan Baku</h5>
+                                        <h5 class="mb-1">informasi Supplier</h5>
                                     </div>
-                                    <p class="mb-1">Mengirim bahan baku ke Inventory</p>
+                                    <p class="mb-1">Melihat dan mengirim bahan baku ke Inventory</p>
                                 </a>
                             </div>
                         </div>

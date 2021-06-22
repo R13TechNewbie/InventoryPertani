@@ -264,10 +264,10 @@
                                 <i class="menu-icon"></i><span class="nav-text">Stok Bahan Baku</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="./informasi-bahan-baku">Informasi Bahan Baku</a></li>
-                                <li><a href="./informasi-bahan-baku-keluar">Informasi Bahan Baku Keluar</a></li>
-                                <li><a href="./request-pembelian-bahan-baku">Request Pembelian Bahan Baku</a></li>
-                                <li><a href="./purchase-order">Lihat Purchase Order</a></li>
+                                <li><a href="../informasi-bahan-baku">Informasi Bahan Baku</a></li>
+                                <li><a href="../informasi-bahan-baku-keluar">Informasi Bahan Baku Keluar</a></li>
+                                <li><a href="../request-pembelian-bahan-baku">Request Pembelian Bahan Baku</a></li>
+                                <li><a href="../purchase-order">Lihat Purchase Order</a></li>
                             </ul>
                         </li>
                         <li>
@@ -275,8 +275,8 @@
                                 <i class="menu-icon"></i><span class="nav-text">Stok Barang Jadi</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="./informasi-barang-jadi-inventory">Informasi Barang Jadi</a></li>
-                                <li><a href="./request-barang-jadi-keluar">Informasi Barang Jadi Keluar</a></li>
+                                <li><a href="../informasi-barang-jadi-inventory">Informasi Barang Jadi</a></li>
+                                <li><a href="../request-barang-jadi-keluar">Informasi Barang Jadi Keluar</a></li>
                             </ul>
                         </li>
                         <li>

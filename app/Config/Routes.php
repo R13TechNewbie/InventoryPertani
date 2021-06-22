@@ -128,7 +128,11 @@ $routes->group('', ['filter' => 'role:Purchasing'], function ($routes) {
 
 $routes->group('', ['filter' => 'role:Supplier'], function ($routes) {
 	$routes->get('/supplier', 'Supplier::index');
-	$routes->get('/kirim-bahan-baku', 'Supplier::kirimBahanBaku');
+	$routes->get('/informasi-supplier', 'Supplier::informasiSupplier');
+	$routes->delete('/informasi-supplier/delete/(:num)', 'Produksi::deleteBahanBakuMasuk/$1');
+	$routes->get('/kirim-bahan-baku', 'Supplier::kirimBahanBakuMasuk');
+	$routes->post('/kirim-bahan-baku/submit', 'Supplier::submitBahanBakuMasuk');
+	$routes->get('/kirim-bahan-baku/(:num)', 'Supplier::kirimBahanBakuMasuk/$1');
 });
 
 

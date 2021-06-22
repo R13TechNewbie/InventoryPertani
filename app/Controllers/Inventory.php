@@ -2,11 +2,10 @@
 
 namespace App\Controllers;
 
+use Config\View;
 use App\Database\Migrations\JenisBahanBaku;
 use App\Models\BahanBakuKeluarModel;
 use App\Models\BahanBakuMasukModel;
-use Config\View;
-
 use App\Models\BahanBakuModel;
 use App\Models\BarangJadiKeluarModel;
 use App\Models\BarangJadiMasukModel;

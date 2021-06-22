@@ -25,6 +25,7 @@ class BahanBakuMasukModel extends Model
 
     protected $useTimestamps = true;
     protected $createdField = 'tgl_bahan_baku_masuk';
+    protected $updatedField  = 'tgl_bahan_baku_masuk';
     protected $dateFormat = 'date';
 
     // protected $returnType     = 'array';
@@ -33,7 +34,6 @@ class BahanBakuMasukModel extends Model
 
     // protected $useTimestamps = false;
     // protected $createdField  = 'created_at';
-    // protected $updatedField  = 'updated_at';
     // protected $deletedField  = 'deleted_at';
 
     // protected $validationRules    = [];
