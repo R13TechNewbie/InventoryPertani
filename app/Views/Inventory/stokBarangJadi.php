@@ -26,9 +26,9 @@
                                 </a>
                                 <a href="/request-barang-jadi-keluar" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Request Barang Jadi Keluar</h5>
+                                        <h5 class="mb-1">Informasi Barang Jadi Keluar</h5>
                                     </div>
-                                    <p class="mb-1">Lihat dan pesan request barang jadi keluar ke Inventory</p>
+                                    <p class="mb-1">Lihat dan pesan permintaan barang jadi keluar ke Inventory</p>
                                 </a>
                             </div>
                         </div>

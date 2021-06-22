@@ -274,6 +274,8 @@ class Inventory extends BaseController
             // 'barangJadiMasuk' => $this->barangJadiMasukModel->getBarangJadiMasuk(),
             'barangJadi' => $this->barangJadiModel->getBarangJadi(),
             'jenisBarangJadi' => $this->jenisBarangJadiModel,
+            'barangJadiTertentu' => $this->barangJadiModel,
+            'barangJadiMasuk' => $this->barangJadiMasukModel->getBarangJadiMasuk()
         ];
 
         return view('Inventory/informasiBarangJadi', $data);
@@ -487,7 +489,9 @@ class Inventory extends BaseController
     {
         $data = [
             'title' => 'Inventory',
-            'bahanBaku' => $this->bahanBakuModel->getBahanBaku()
+            'bahanBaku' => $this->bahanBakuModel->getBahanBaku(),
+            'bahanBakuTertentu' => $this->bahanBakuModel,
+            'bahanBakuMasuk' => $this->bahanBakuMasukModel->getBahanBakuMasuk()
         ];
 
         // echo view('Layout/header');

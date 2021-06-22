@@ -276,7 +276,7 @@
                             </a>
                             <ul aria-expanded="false">
                                 <li><a href="./informasi-barang-jadi-inventory">Informasi Barang Jadi</a></li>
-                                <li><a href="./request-barang-jadi-keluar">Request Barang Jadi Keluar</a></li>
+                                <li><a href="./request-barang-jadi-keluar">Informasi Barang Jadi Keluar</a></li>
                             </ul>
                         </li>
                         <li>

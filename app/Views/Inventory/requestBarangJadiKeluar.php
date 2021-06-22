@@ -19,12 +19,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Request Barang Jadi Keluar dari Sales & Marketing</h4>
+                        <h4 class="card-title">Informasi Barang Jadi Keluar</h4>
                         <?php if (session()->getFlashData('pesan')) : ?>
                             <div class="alert alert-success" role="alert">
                                 <?= session()->getFlashData('pesan'); ?>
                             </div>
                         <?php endif; ?>
+                        <h5 class="card-title">Request Barang Jadi Keluar dari Sales & Marketing</h5>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
@@ -56,7 +57,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">Barang Jadi Keluar</h4>
+                        <h5 class="card-title">Barang Jadi Keluar</h5>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
