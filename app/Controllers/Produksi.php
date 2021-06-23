@@ -289,8 +289,14 @@ class Produksi extends BaseController
         ];
 
         if (empty($data['id_barang_jadi'])) {
-            $data['id_barang_jadi'] = $this->barangJadiModel->where('nama_barang_jadi', $data['nama_barang_jadi'])->first()['id_barang_jadi'];
-            $this->barangJadiMasukModel->save($data);
+            if (empty($this->barangJadiModel->where('nama_barang_jadi', $data['nama_barang_jadi'])->first()['id_barang_jadi'])) {
+                $this->barangJadiModel->save($data);
+                $data['id_barang_jadi'] = $this->barangJadiModel->where('nama_barang_jadi', $data['nama_barang_jadi'])->first()['id_barang_jadi'];
+                $this->barangJadiMasukModel->save($data);
+            } else {
+                $data['id_barang_jadi'] = $this->barangJadiModel->where('nama_barang_jadi', $data['nama_barang_jadi'])->first()['id_barang_jadi'];
+                $this->barangJadiMasukModel->save($data);
+            }
         } else {
             $this->barangJadiMasukModel->save($data);
         }

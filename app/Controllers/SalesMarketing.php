@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\BarangJadiKeluarModel;
 use App\Models\BarangJadiModel;
 use App\Models\RequestBarangJadiKeluarModel;
 use CodeIgniter\I18n\Time;
@@ -11,11 +12,13 @@ class SalesMarketing extends BaseController
 {
     protected $BarangJadiModel;
     protected $RequestBarangJadiKeluarModel;
+    protected $barangJadiKeluarModel;
 
     public function __construct()
     {
         $this->BarangJadiModel = new BarangJadiModel();
         $this->RequestBarangJadiKeluarModel = new RequestBarangJadiKeluarModel();
+        $this->BarangJadiKeluarModel = new BarangJadiKeluarModel();
         $this->myTime = new Time('now', 'Asia/Jakarta', 'id_ID');
     }
 
@@ -124,11 +127,14 @@ class SalesMarketing extends BaseController
     public function stokBarangJadiKeluar()
     {
         $data = [
-            'title' => 'Sales & Marketing'
+            'title' => 'Sales & Marketing',
+            'title' => 'Inventory',
+            'requestBarangJadiKeluar' => $this->RequestBarangJadiKeluarModel->getRequestBarangJadiKeluar(),
+            'requestBarangJadiKeluarTertentu' => $this->RequestBarangJadiKeluarModel,
+            'barangJadi' => $this->BarangJadiModel,
+            'barangJadiKeluar' => $this->BarangJadiKeluarModel->getBarangJadiKeluar()
         ];
 
-        echo view('Layout/header', $data);
-        echo view('SalesMarketing/stokBarangJadiKeluar');
-        echo view('Layout/footer');
+        return view('SalesMarketing/stokBarangJadiKeluar', $data);
     }
 }

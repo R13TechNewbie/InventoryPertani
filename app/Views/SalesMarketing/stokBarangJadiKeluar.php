@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -16,31 +20,35 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Stok Barang Jadi Keluar</h4>
+                        <?php if (session()->getFlashData('pesan')) : ?>
+                            <div class="alert alert-success" role="alert">
+                                <?= session()->getFlashData('pesan'); ?>
+                            </div>
+                        <?php endif; ?>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
                                         <th>Nama Barang Jadi</th>
-                                        <th>Jumlah</th>
+                                        <th>Kuantitas</th>
+                                        <th>Id. Produk</th>
+                                        <th>Tgl Barang Keluar</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Beras Pertani 1 KG</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Beras Pertani 5 KG</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Bibit Tomat Pertani</td>
-                                        <td>7</td>
-                                    </tr>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($barangJadiKeluar as $b) : ?>
+                                        <tr>
+                                            <th><?= $i++; ?></th>
+                                            <td><?= $barangJadi->find($requestBarangJadiKeluarTertentu->find($b['id_req_barang_jadi_keluar'])['id_barang_jadi'])['nama_barang_jadi']; ?></td>
+                                            <td><?= $requestBarangJadiKeluarTertentu->find($b['id_req_barang_jadi_keluar'])['kuantitas']; ?></td>
+                                            <td><?= $requestBarangJadiKeluarTertentu->find($b['id_req_barang_jadi_keluar'])['id_barang_jadi']; ?></td>
+                                            <td><?= $requestBarangJadiKeluarTertentu->find($b['id_req_barang_jadi_keluar'])['tgl_request']; ?></td>
+                                            <td><?= $b['status']; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -51,3 +59,5 @@
     </div>
     <!-- #/ container -->
 </div>
+
+<?= $this->endSection(); ?>
