@@ -260,6 +260,19 @@ class Inventory extends BaseController
             'alert' => 'Data berhasil ditambah/diubah'
         ];
 
+        $kuantitasPesanan = $this->requestBahanBakuModel->find($data['id_req_bahan_baku'])['kuantitas'];
+        $idBahanBakuPesanan = $this->requestBahanBakuModel->find($data['id_req_bahan_baku'])['id_bahan_baku'];
+        $stokBahanBakuDiInventory = $this->bahanBakuModel->find($idBahanBakuPesanan)['stock_bahan_baku'];
+
+        if (($stokBahanBakuDiInventory - $kuantitasPesanan) < 0) {
+            return redirect()->back()->withInput()->with('pesan', "Jumlah stok bahan baku di inventory tidak mencukupi. Silakan <a href='/input-request-pembelian-bahan-baku'>klik disini</a> untuk mengajukan permintaan pembelian bahan baku ke Purchasing terlebih dahulu.");
+        } else {
+            $dataPenguranganStok = [
+                'stock_bahan_baku' => $stokBahanBakuDiInventory - $kuantitasPesanan
+            ];
+            $this->bahanBakuModel->update($idBahanBakuPesanan, $dataPenguranganStok);
+        }
+
         $this->bahanBakuKeluarModel->save($data);
 
         session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');

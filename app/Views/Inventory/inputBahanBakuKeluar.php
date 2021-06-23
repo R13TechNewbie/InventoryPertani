@@ -20,6 +20,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Input Bahan Baku Keluar</h4>
+                        <?php if (session()->getFlashData('pesan')) : ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?= session()->getFlashData('pesan'); ?>
+                            </div>
+                        <?php endif; ?>
                         <div class="form-validation">
                             <form class="form-valide" action="/input-bahan-baku-keluar/submit" method="post">
                                 <?php if (empty($idBahanBakuKeluar)) : ?>
