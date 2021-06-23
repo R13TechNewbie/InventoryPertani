@@ -1,3 +1,7 @@
+<?= $this->extend('Layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="content-body">
 
     <!-- <div class="row page-titles mx-0">
@@ -17,6 +21,36 @@
                     <div class="card-body">
                         <h4 class="card-title">Permintaan Pembelian Bahan Baku</h4>
                         <div class="table-responsive">
+                            <table class="table table-striped table-bordered zero-configuration setting-defaults">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Id Pesanan</th>
+                                        <th>Nama Bahan Baku</th>
+                                        <th>Jumlah</th>
+                                        <th>Tgl Request</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($reqBahanBaku as $b) : ?>
+                                        <tr>
+                                            <td><?= $i++; ?></td>
+                                            <td><?= $b['id_req_bahan_baku']; ?></td>
+                                            <td><?= $bahanBaku->find($b['id_bahan_baku'])['nama_bahan_baku']; ?></td>
+                                            <td><?= $b['kuantitas']; ?></td>
+                                            <td><?= $b['tgl_request']; ?></td>
+                                            <td>
+                                                <a href="#"><button class="btn btn-success"><i class="fa fa-check fa-change-to-white"></i></button></a>
+                                                <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
                                     <tr>
@@ -60,7 +94,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -68,3 +102,5 @@
     </div>
     <!-- #/ container -->
 </div>
+
+<?= $this->endSection(); ?>

@@ -2,10 +2,22 @@
 
 namespace App\Controllers;
 
+use App\Models\BahanBakuModel;
+use App\Models\RequestBahanBakuModel;
 use Config\View;
 
 class Purchasing extends BaseController
 {
+
+    protected $requestBahanBakuModel;
+    protected $bahanBakuModel;
+
+    public function __construct()
+    {
+        $this->requestBahanBakuModel = new RequestBahanBakuModel();
+        $this->bahanBakuModel = new BahanBakuModel();
+    }
+
     public function index()
     {
         $data = [
@@ -20,12 +32,12 @@ class Purchasing extends BaseController
     public function permintaanPembelianBahanBaku()
     {
         $data = [
-            'title' => 'Purchasing'
+            'title' => 'Purchasing',
+            'reqBahanBaku' => $this->requestBahanBakuModel->where('status', 'Menunggu')->findAll(),
+            'bahanBaku' => $this->bahanBakuModel
         ];
 
-        echo view('Layout/header', $data);
-        echo view('Purchasing/permintaanPembelianBahanBaku');
-        echo view('Layout/footer');
+        return view('Purchasing/permintaanPembelianBahanBaku', $data);
     }
 
     public function kirimPurchaseOrder()
