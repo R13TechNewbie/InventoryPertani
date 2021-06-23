@@ -31,9 +31,9 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Nama Bahan Baku</th>
-                                        <th>Jumlah Pesanan</th>
-                                        <th>Tanggal Pesanan</th>
+                                        <th>Nama Barang Jadi</th>
+                                        <th>Jumlah</th>
+                                        <th>Tgl Produksi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>

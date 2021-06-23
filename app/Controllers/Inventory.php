@@ -352,7 +352,6 @@ class Inventory extends BaseController
             'alert' => 'Data berhasil ditambah/diubah'
         ];
 
-
         $this->jenisBarangJadiModel->save($data);
 
         session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');
@@ -381,7 +380,7 @@ class Inventory extends BaseController
             if ($b['nama_barang_jadi'] == $this->request->getPost('nama_barang_jadi')) {
                 $idBarangJadi = $b['id_barang_jadi'];
             } else {
-                $idBarangJadi = $this->request->getPost('id_bahan_baku');
+                $idBarangJadi = $this->request->getPost('id_barang_jadi');
             }
         };
 
@@ -393,8 +392,6 @@ class Inventory extends BaseController
             'tgl_barang_jadi_masuk' => $this->myTime,
             'alert' => 'Data berhasil ditambah/diubah'
         ];
-
-        // dd($data);
 
         if (empty($data['id_barang_jadi'])) {
             $data['id_barang_jadi'] = $this->barangJadiModel->find($data['nama_barang_jadi']);
