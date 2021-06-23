@@ -274,6 +274,8 @@ class Produksi extends BaseController
         foreach ($this->barangJadiModel->getBarangJadi() as $b) {
             if ($b['nama_barang_jadi'] == $this->request->getPost('nama_barang_jadi')) {
                 $idBarangJadi = $b['id_barang_jadi'];
+            } else {
+                $idBarangJadi = $this->request->getPost('id_barang_jadi');
             }
         };
 
@@ -287,11 +289,11 @@ class Produksi extends BaseController
         ];
 
         if (empty($data['id_barang_jadi'])) {
-            $this->barangJadiModel->save($data);
-            $data['id_barang_jadi'] = $this->barangJadiModel->find($data['nama_barang_jadi']);
+            $data['id_barang_jadi'] = $this->barangJadiModel->where('nama_barang_jadi', $data['nama_barang_jadi'])->first()['id_barang_jadi'];
+            $this->barangJadiMasukModel->save($data);
+        } else {
+            $this->barangJadiMasukModel->save($data);
         }
-
-        $this->barangJadiMasukModel->save($data);
 
         session()->setFlashdata('pesan', 'Data berhasil ditambah/diedit');
 

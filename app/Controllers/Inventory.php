@@ -379,8 +379,9 @@ class Inventory extends BaseController
             'alert' => 'Data berhasil ditambah/diubah'
         ];
 
+        // dd($data);
+
         if (empty($data['id_barang_jadi'])) {
-            $this->barangJadiModel->save($data);
             $data['id_barang_jadi'] = $this->barangJadiModel->find($data['nama_barang_jadi']);
         }
 

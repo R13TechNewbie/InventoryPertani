@@ -108,7 +108,7 @@ $routes->group('', ['filter' => 'role:Produksi'], function ($routes) {
 	$routes->delete('/informasi-request-bahan-baku/delete/(:num)', 'Produksi::deleteRequestBahanBaku/$1');
 	$routes->get('/informasi-request-bahan-baku', 'Produksi::informasiRequestBahanBaku');
 	$routes->get('/informasi-laporan-barang-jadi', 'Produksi::informasiLaporanBarangJadi');
-	$routes->get('/informasi-laporan-barang-jadi/delete/(:num)', 'Produksi::deleteLaporanBarangJadi/$1');
+	$routes->delete('/informasi-laporan-barang-jadi/delete/(:num)', 'Produksi::deleteLaporanBarangJadi/$1');
 	$routes->get('/penerimaan-bahan-baku', 'Produksi::penerimaanBahanBaku');
 	$routes->get('/input-barang-jadi-produksi', 'Produksi::inputBarangJadi');
 	$routes->post('/input-barang-jadi-produksi/submit', 'Produksi::submitInputBarangJadi');
