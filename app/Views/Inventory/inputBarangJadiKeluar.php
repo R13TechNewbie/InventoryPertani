@@ -20,6 +20,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Input Barang Jadi Keluar</h4>
+                        <?php if (session()->getFlashData('pesan')) : ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?= session()->getFlashData('pesan'); ?>
+                            </div>
+                        <?php endif; ?>
                         <div class="form-validation">
                             <form class="form-valide" action="/input-barang-jadi-keluar/submit" method="post">
                                 <?php if (empty($idBarangJadiKeluar)) : ?>
@@ -62,7 +67,7 @@
                                         <label class="col-lg-4 col-form-label" for="nama_barang_jadi">Nama Barang Jadi<span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="number" class="form-control" id="nama_barang_jadi" name="nama_barang_jadi" value="<?= $namaBarangJadi; ?>" readonly="true">
+                                            <input type="text" class="form-control" id="nama_barang_jadi" name="nama_barang_jadi" value="<?= $namaBarangJadi; ?>" readonly="true">
                                         </div>
                                     </div>
                                     <div class="form-group row">

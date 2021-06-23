@@ -135,9 +135,10 @@ class Inventory extends BaseController
             'idReqBarangJadiKeluar' => $idRequestBarangJadiKeluar,
             'namaBarangJadi' => $this->barangJadiModel->find($this->requestBarangJadiKeluarModel->find($idRequestBarangJadiKeluar))[0]['nama_barang_jadi'],
             'kuantitas' => $this->requestBarangJadiKeluarModel->find($idRequestBarangJadiKeluar)['kuantitas'],
-            'idBarangJadi' => $this->barangJadiModel->find($this->requestBarangJadiKeluarModel->find($idRequestBarangJadiKeluar))[0]['id_barang_jadi'],
             'tglRequest' => $this->requestBarangJadiKeluarModel->find($idRequestBarangJadiKeluar)['tgl_request'],
-            'status' => $status
+            'idBarangJadi' => $this->barangJadiModel->find($this->requestBarangJadiKeluarModel->find($idRequestBarangJadiKeluar))[0]['id_barang_jadi'],
+            'status' => $status,
+            'validation' => $this->validation
         ];
 
         echo view('Inventory/inputBarangJadiKeluar', $data);
@@ -146,6 +147,7 @@ class Inventory extends BaseController
     public function submitBarangJadiKeluar()
     {
         # code...
+
         $data = [
             'id_barang_jadi_keluar' => $this->request->getPost('id_barang_jadi_keluar'),
             'id_req_barang_jadi_keluar' => $this->request->getPost('id_req_barang_jadi_keluar'),
@@ -153,6 +155,19 @@ class Inventory extends BaseController
             'status' => $this->request->getPost('status'),
             'alert' => 'Data berhasil ditambah/diubah'
         ];
+
+        $kuantitasPesanan = $this->requestBarangJadiKeluarModel->find($data['id_req_barang_jadi_keluar'])['kuantitas'];
+        $idBarangJadiPesanan = $this->requestBarangJadiKeluarModel->find($data['id_req_barang_jadi_keluar'])['id_barang_jadi'];
+        $stokBarangJadiDiInventory = $this->barangJadiModel->find($idBarangJadiPesanan)['stock_barang_jadi'];
+
+        if (($stokBarangJadiDiInventory - $kuantitasPesanan) < 0) {
+            return redirect()->back()->withInput()->with('pesan', "Jumlah stok barang jadi di inventory tidak mencukupi. Silakan menunggu barang jadi ke Produksi terlebih dahulu.");
+        } else {
+            $dataPenguranganStok = [
+                'stock_barang_jadi' => $stokBarangJadiDiInventory - $kuantitasPesanan
+            ];
+            $this->barangJadiModel->update($idBarangJadiPesanan, $dataPenguranganStok);
+        }
 
         $this->barangJadiKeluarModel->save($data);
 
