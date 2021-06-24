@@ -20,6 +20,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Permintaan Pembelian Bahan Baku</h4>
+                        <?php if (session()->getFlashData('pesan')) : ?>
+                            <div class="alert alert-success" role="alert">
+                                <?= session()->getFlashData('pesan'); ?>
+                            </div>
+                        <?php endif; ?>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration setting-defaults">
                                 <thead>
@@ -42,8 +47,8 @@
                                             <td><?= $b['kuantitas']; ?></td>
                                             <td><?= $b['tgl_request']; ?></td>
                                             <td>
-                                                <a href="#"><button class="btn btn-success"><i class="fa fa-check fa-change-to-white"></i></button></a>
-                                                <a href="#"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
+                                                <a href="/permintaan-pembelian-terkirim/<?= $b['id_req_bahan_baku']; ?>"><button class="btn btn-success"><i class="fa fa-check fa-change-to-white"></i></button></a>
+                                                <a href="/permintaan-pembelian-ditolak/<?= $b['id_req_bahan_baku']; ?>"><button class="btn btn-danger"><i class="fa fa-times"></i></button></a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

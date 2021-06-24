@@ -11,7 +11,7 @@ class RequestQuotationModel extends Model
 
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['id_supplier', 'alamat_supplier', 'no_tlp_supplier', 'nama_barang', 'jumlah_barang', 'harga', 'total_harga'];
+    protected $allowedFields = ['no_rq', 'id_supplier', 'alamat_supplier', 'no_tlp_supplier', 'nama_barang', 'jumlah_barang', 'harga', 'total_harga'];
 
     public function getRequestQuotation($idRequestQuotation = false)
     {

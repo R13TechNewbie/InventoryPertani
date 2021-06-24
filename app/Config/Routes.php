@@ -122,6 +122,8 @@ $routes->group('', ['filter' => 'role:Purchasing'], function ($routes) {
 	$routes->get('/purchasing', 'Purchasing::index');
 	$routes->get('/permintaan-pembelian-bahan-baku', 'Purchasing::permintaanPembelianBahanBaku');
 	$routes->get('/kirim-purchase-order', 'Purchasing::kirimPurchaseOrder');
+	$routes->get('/permintaan-pembelian-terkirim/(:num)', 'Purchasing::permintaanPembelianTerkirim/$1');
+	$routes->get('/permintaan-pembelian-ditolak/(:num)', 'Purchasing::permintaanPembelianDitolak/$1');
 });
 
 

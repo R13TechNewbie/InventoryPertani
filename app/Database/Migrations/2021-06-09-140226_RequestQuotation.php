@@ -28,7 +28,7 @@ class RequestQuotation extends Migration
 				'constraint' => 30,
 			],
 			'no_tlp_supplier'       => [
-				'type'       => 'INT',
+				'type'       => 'VARCHAR',
 				'constraint' => 12,
 			],
 			'nama_barang'       => [

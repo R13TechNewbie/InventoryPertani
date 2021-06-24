@@ -50,4 +50,32 @@ class Purchasing extends BaseController
         echo view('Purchasing/kirimPurchaseOrder');
         echo view('Layout/footer');
     }
+
+    public function permintaanPembelianTerkirim($idPermintaanPembelianBahanBaku)
+    {
+        $data = [
+            'title' => 'Purchasing',
+            'id_req_bahan_baku' => $idPermintaanPembelianBahanBaku,
+            'status' => 'Terkirim'
+        ];
+        $this->requestBahanBakuModel->save($data);
+
+        session()->setFlashdata('pesan', 'Data berhasil diubah statusnya');
+
+        return redirect()->to('/permintaan-pembelian-bahan-baku');
+    }
+
+    public function permintaanPembelianDitolak($idPermintaanPembelianBahanBaku)
+    {
+        $data = [
+            'title' => 'Purchasing',
+            'id_req_bahan_baku' => $idPermintaanPembelianBahanBaku,
+            'status' => 'Ditolak'
+        ];
+        $this->requestBahanBakuModel->save($data);
+
+        session()->setFlashdata('pesan', 'Data berhasil diubah statusnya');
+
+        return redirect()->to('/permintaan-pembelian-bahan-baku');
+    }
 }

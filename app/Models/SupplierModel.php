@@ -11,7 +11,7 @@ class SupplierModel extends Model
 
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['id_user', 'nama_supplier', 'alamat_supplier', 'no_tlp_supplier', 'email'];
+    protected $allowedFields = ['id_supplier', 'id_user', 'nama_supplier', 'alamat_supplier', 'no_tlp_supplier', 'email'];
 
     public function getSupplier($idSupplier = false)
     {

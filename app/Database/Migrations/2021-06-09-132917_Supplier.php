@@ -33,8 +33,8 @@ class Supplier extends Migration
 				'constraint' => 30,
 			],
 			'no_tlp_supplier'       => [
-				'type'       => 'INT',
-				'constraint' => 12,
+				'type'       => 'VARCHAR',
+				'constraint' => 14,
 			],
 			'email'       => [
 				'type'       => 'VARCHAR',
