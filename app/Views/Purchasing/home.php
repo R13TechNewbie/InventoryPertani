@@ -22,7 +22,7 @@
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">Permintaan Pembelian Bahan Baku</h5>
                                     </div>
-                                    <p class="mb-1">Lihat permintaan pembelian bahan baku yang diajukan inventory</p>
+                                    <p class="mb-1">Lihat permintaan pembelian bahan baku yang diajukan Produksi</p>
                                 </a>
                                 <a href="/kirim-purchase-order" class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">

@@ -72,7 +72,10 @@ class PurchaseOrderSeeder extends Seeder
 		for ($i = 0; $i < count($data); $i++) {
 			// $builder->where('id_po', $id_po);
 			// $builder->update($data[$i]);
-			$this->purchaseOrderModel->save($data[$i]);
+			// $this->purchaseOrderModel->save($data[$i]);
+			if ($i >= count($data) - 1) {
+				$this->purchaseOrderModel->insert($data[$i]);
+			}
 			// $id_po++;
 		}
 	}

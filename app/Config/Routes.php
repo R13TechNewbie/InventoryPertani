@@ -70,6 +70,7 @@ $routes->group('', ['filter' => 'role:Inventory'], function ($routes) {
 	$routes->get('/input-request-pembelian-bahan-baku', 'Inventory::inputRequestPembelianBahanBaku');
 	$routes->post('/input-request-pembelian-bahan-baku/submit', 'Inventory::submitInputRequestPembelianBahanBaku');
 	$routes->get('/purchase-order', 'Inventory::purchaseOrder');
+	$routes->get('/purchase-order/(:num)', 'Inventory::purchaseOrder/$1');
 	$routes->get('/informasi-bahan-baku', 'Inventory::informasiBahanBaku');
 	$routes->get('/input-bahan-baku', 'Inventory::inputBahanBaku');
 	$routes->post('/input-bahan-baku/submit', 'Inventory::submitBahanBaku');
@@ -131,7 +132,7 @@ $routes->group('', ['filter' => 'role:Purchasing'], function ($routes) {
 $routes->group('', ['filter' => 'role:Supplier'], function ($routes) {
 	$routes->get('/supplier', 'Supplier::index');
 	$routes->get('/informasi-supplier', 'Supplier::informasiSupplier');
-	$routes->delete('/informasi-supplier/delete/(:num)', 'Produksi::deleteBahanBakuMasuk/$1');
+	$routes->delete('/informasi-supplier/delete/(:num)', 'Supplier::deleteBahanBakuMasuk/$1');
 	$routes->get('/kirim-bahan-baku', 'Supplier::kirimBahanBakuMasuk');
 	$routes->post('/kirim-bahan-baku/submit', 'Supplier::submitBahanBakuMasuk');
 	$routes->get('/kirim-bahan-baku/(:num)', 'Supplier::kirimBahanBakuMasuk/$1');

@@ -34,22 +34,25 @@
                                         <th>Nama Bahan Baku</th>
                                         <th>Kuantitas</th>
                                         <th>Tanggal Pesanan</th>
-                                        <th>Status</th>
+                                        <!-- <th>Status</th> -->
                                         <th>Proses ke Bahan Baku Keluar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($requestBahanBaku as $b) : ?>
-                                        <tr>
-                                            <th><?= $b['id_req_bahan_baku']; ?></th>
-                                            <td><?= $bahanBaku->find($b['id_bahan_baku'])['nama_bahan_baku']; ?></td>
-                                            <td><?= $b['kuantitas']; ?></td>
-                                            <td><?= $b['tgl_request']; ?></td>
-                                            <td><?= $b['status']; ?></td>
-                                            <td>
-                                                <center><a class="" href="/input-bahan-baku-keluar/<?= $b['id_req_bahan_baku']; ?>"><button class="btn btn-success"><i class="fa fa-plus fa-change-to-white"></i></button></a></center>
-                                            </td>
-                                        </tr>
+                                        <?php if ($b['status'] != "Ditolak") : ?>
+                                            <tr>
+                                                <th><?= $b['id_req_bahan_baku']; ?></th>
+                                                <td><?= $bahanBaku->find($b['id_bahan_baku'])['nama_bahan_baku']; ?></td>
+                                                <td><?= $b['kuantitas']; ?></td>
+                                                <td><?= $b['tgl_request']; ?></td>
+
+                                                <td>
+                                                    <center><a class="" href="/input-bahan-baku-keluar/<?= $b['id_req_bahan_baku']; ?>"><button class="btn btn-success"><i class="fa fa-plus fa-change-to-white"></i></button></a></center>
+                                                </td>
+                                            </tr>
+                                        <?php else : ?>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>

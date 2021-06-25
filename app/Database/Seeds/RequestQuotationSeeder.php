@@ -74,12 +74,26 @@ class RequestQuotationSeeder extends Seeder
 				'harga' 			=> $this->barangModel->find(5)['harga'],
 				'total_harga'		=> 53 * $this->barangModel->find(5)['harga']
 			],
+			[
+				'no_rq'				=> 3030006,
+				'id_supplier'   	=> $this->barangModel->find(6)['id_supplier'],
+				'alamat_supplier' 	=> $this->supplierModel->find($this->barangModel->find(6)['id_supplier'])['alamat_supplier'],
+				'no_tlp_supplier' 	=> $this->supplierModel->find($this->barangModel->find(6)['id_supplier'])['no_tlp_supplier'],
+				'nama_barang' 		=> $this->barangModel->find(6)['nama_barang'],
+				'jumlah_barang'		=> 20,
+				'harga' 			=> $this->barangModel->find(6)['harga'],
+				'total_harga'		=> 20 * $this->barangModel->find(6)['harga']
+			],
 		];
 
 		// $this->db->table('request_quotation')->insertBatch($data);
-		$this->requestQuotationModel->insertBatch($data);
-		// for ($i = 0; $i < count($data); $i++) {
-		// 	$this->requestQuotationModel->save($data[$i]);
-		// }
+		// $this->requestQuotationModel->insertBatch($data);
+		for ($i = 0; $i < count($data); $i++) {
+			// $this->requestQuotationModel->save($data[$i]);
+
+			if ($i >= (count($data) - 1)) {
+				$this->requestQuotationModel->insert($data[$i]);
+			}
+		}
 	}
 }
